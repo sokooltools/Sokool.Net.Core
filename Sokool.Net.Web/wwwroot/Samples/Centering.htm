@@ -1,0 +1,68 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<title>Center a DIV element</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="content-type" content="text/html">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta id="GENERATOR" content="?">
+	<meta id="Author" content="sokooltools">
+	<meta id="Description" content="description">
+	<link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+	<link rel="stylesheet" href="/css/site.css" />
+	<style type="text/css">
+		html,
+		body {
+			height: 100%;
+		}
+
+		.purple-square-container {
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.purple-square {
+			background-color: #B10DC9;
+			width: 300px;
+			height: 300px;
+		}
+	</style>
+</head>
+<body>
+	<div class="row mt-3 jumbotron">
+		<div class="col col-1 p-sm-0 m-0">
+			<button id="back" class="btn btn-outline-primary">&laquo;&nbsp;Back</button>
+		</div>
+		<div class="col col-11 text-center">
+			<div class="h2">Centering a DIV tag inside another DIV</div>
+		</div>
+	</div>
+	<div class="container">
+		<pre style="white-space: pre-line">
+This sample shows how to center a div inside another div using flexbox
+
+The four steps to centering horizontally and vertically with Flexbox are the following:
+
+HTML, body, and parent container need to have a height of 100%
+Set display to flex on parent container
+Set align-items to center on parent container
+Set justify-content to center on parent container
+Setting display to flex on the parent defines it as a flex container.
+
+By setting align-items to center, we’re saying that the children or flex items are to be centered vertically within the parent.
+
+Justify-content works in the same way, but in the horizontal direction for our example.
+</pre>
+	</div>
+	<div class="purple-square-container border-dark border m-5">
+		<div class="purple-square"></div>
+	</div>
+	<script type="text/javascript" src="/lib/jquery/dist/jquery.js"></script>
+	<script type="text/javascript" src="/lib/bootstrap/dist/js/bootstrap.js"></script>
+	<script type="text/javascript" src="/lib/jquery-ui/jquery-ui.js"></script>
+	<script type="text/javascript" src="/js/_site.js"></script>
+	<script type="text/javascript" src="/js/_samples.js"></script>
+</body>
+</html>

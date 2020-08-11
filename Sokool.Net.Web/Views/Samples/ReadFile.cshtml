@@ -1,0 +1,25 @@
+﻿@using System.IO
+@{
+	Layout = null;
+}
+
+@{
+	string dataFile = Server.MapPath("~/App_Data/Persons.txt");
+	Array userData = await File.ReadAllLinesAsync(dataFile);
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sample </title>
+</head>
+<body>
+	<h1>Reading Data from a File</h1>
+	@foreach (string dataLine in userData)
+	{
+		foreach (string dataItem in dataLine.Split(','))
+		{@dataItem <text>&nbsp;</text>}
+	<br />
+}
+</body>
+</html>

@@ -1,0 +1,141 @@
+﻿body {
+    padding-top: 0;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 65px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.navbar {
+    width: 100%;
+    background-color: #555;
+    overflow: auto;
+}
+
+    .navbar a {
+        float: left;
+        padding: 12px;
+        color: white;
+        text-decoration: none;
+        font-size: 17px;
+    }
+
+        .navbar a:hover {
+            background-color: #000;
+        }
+
+.navbar-dark .nav-item > .nav-link.active {
+    color: white;
+    background-color: red;
+}
+
+.active {
+    background-color: #4CAF50;
+}
+
+
+@media screen and (max-width: 500px) {
+    .navbar a {
+        float: none;
+        display: block;
+    }
+}
+
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 50px;
+    line-height: 50px; /* Vertically center the text there */
+    background-color: #f5f5f5;
+}
+
+/* -------------------------------------------*/
+
+@media screen and (max-width: 575px) {
+    /*.container.body-content {
+        margin-top: 22rem;
+    }*/
+
+    footer {
+        font-size: 60%;
+    }
+
+    #Lyrics {
+        font-size: .8rem;
+    }
+}
+
+@media screen and (min-width: 576px) {
+    .container.body-content {
+        margin-top: 4rem;
+    }
+
+    footer {
+        font-size: 80%;
+    }
+
+    #Lyrics {
+        font-size: .8rem;
+    }
+}
+
+@media screen and (min-width: 625px) {
+    .container.body-content {
+        margin-top: 2.75rem;
+    }
+
+    footer {
+        font-size: 90%;
+    }
+
+    #Lyrics {
+        font-size: .9rem;
+    }
+}
+
+@media screen and (min-width: 841px) {
+    .container.body-content {
+        margin-top: 1rem;
+    }
+
+    footer {
+        font-size: 100%;
+    }
+
+    #Lyrics {
+        font-size: 1rem;
+    }
+}

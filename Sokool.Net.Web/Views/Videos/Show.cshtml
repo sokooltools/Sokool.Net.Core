@@ -1,0 +1,41 @@
+﻿@model Sokool.Net.DataLibrary.Data.Video
+
+
+@section Styles {
+	<link rel="stylesheet" href="~/lib/jquery-ui/jquery-ui.min.css">
+	<link rel="stylesheet" href="~/css/videos.css" />
+}
+
+@{
+	await Html.RenderPartialAsync("_HeaderTabBar");
+}
+
+<div claas="table">
+	<div class="row m-4">
+		<div class="col col-2 p-0">
+			<button id="back" class="btn btn-outline-primary mr-md-1 ml-md-1" onclick="GoBack();">&laquo;&nbsp;Back</button>
+		</div>
+		<div class="col col-8 text-center">
+			<h2>@Model.Name</h2>
+		</div>
+		<div class="col col-2 text-right">
+			<button id="ShowHide" class="btn btn-info ml-0" onclick="OpenDialog()">Show Lyrics</button>
+		</div>
+	</div>
+</div>
+
+<div class="" style="max-width: 90%; margin: 0 auto 0 auto;">
+	<!-- 4:3 aspect ratio -->
+	<div class="embed-responsive embed-responsive-4by3">
+		<video class="embed-responsive-item" controls autoplay >
+			<source src="@Model.VirtualFolder@Model.FileName" type="@Model.FileType">
+		</video>
+	</div>
+</div>
+<div id="Lyrics" style="background-color: Bisque; white-space: pre-wrap; text-align:center;">@Model.Lyrics</div>
+
+
+@section Scripts {
+	<script type="text/javascript" src="~/lib/jquery-ui/jquery-ui.min.js" ></script>
+	<script type="text/javascript" src="~/js/_video.js"></script>
+}

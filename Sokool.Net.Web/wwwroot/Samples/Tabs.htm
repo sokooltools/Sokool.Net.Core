@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>Sample BootStrap Tab Control</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,400italic,700,700italic,900,900italic">
+	<link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+	<link rel="stylesheet" href="/css/site.css" />
+	<style type="text/css">
+		.tab-pane {
+			height: 15rem;
+		}
+
+		.active {
+			background-color: beige;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="row mt-3 jumbotron">
+			<div class="col col-1 p-0 m-0">
+				<button id="back" class="btn btn-outline-primary">&laquo;&nbsp;Back</button>
+			</div>
+			<div class="col col-11 text-center">
+				<div class="h2">Sample BootStrap Tab Control</div>
+			</div>
+		</div>
+		<hr />
+		<ul class="nav nav-tabs" id="myTab" role="tablist">
+			<li class="nav-item">
+				<a class="nav-link active" id="default-tab" data-toggle="tab" href="#default" role="tab" aria-controls="default" aria-selected="true">Default</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" id="cameras-tab" data-toggle="tab" href="#cameras" role="tab" aria-controls="cameras" aria-selected="false">Cameras</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" id="cars-tab" data-toggle="tab" href="#cars" role="tab" aria-controls="cars" aria-selected="false">Cars</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" id="ships-tab" data-toggle="tab" href="#ships" role="tab" aria-controls="ships" aria-selected="false">Ships</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" id="icestorm-tab" data-toggle="tab" href="#icestorm" role="tab" aria-controls="icestorm" aria-selected="false">Ice Storm</a>
+			</li>
+		</ul>
+		<div class="tab-content" id="myTabContent">
+			<div class="tab-pane fade show active pl-2" id="default" role="tabpanel" aria-labelledby="default-tab">Default tab content</div>
+			<div class="tab-pane fade pl-2" id="cameras" role="tabpanel" aria-labelledby="cameras-tab">Cameras tab content</div>
+			<div class="tab-pane fade pl-2" id="cars" role="tabpanel" aria-labelledby="cars-tab">Cars tab content</div>
+			<div class="tab-pane fade pl-2" id="ships" role="tabpanel" aria-labelledby="ships-tab">Ships tab content</div>
+			<div class="tab-pane fade pl-2" id="icestorm" role="tabpanel" aria-labelledby="icestorm-tab">Ice Storm tab content</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="/lib/jquery/dist/jquery.js"></script>
+	<script type="text/javascript" src="/lib/bootstrap/dist/js/bootstrap.js"></script>
+	<script type="text/javascript" src="/lib/jquery-ui/jquery-ui.js"></script>
+	<script type="text/javascript" src="/js/_site.js"></script>
+	<script type="text/javascript" src="/js/_samples.js"></script>
+</body>
+</html>

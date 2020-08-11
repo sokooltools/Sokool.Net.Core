@@ -1,0 +1,9 @@
+﻿html, body {
+}
+
+.error-div {
+    float: left;
+    margin: 0.5rem 0.75em;
+    overflow: hidden;
+    width: 20em;
+}

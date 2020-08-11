@@ -1,0 +1,9 @@
+﻿@{
+	ViewBag.Title = TempData["errordesc1"] + " Error - " + TempData["errorcode"];
+}
+
+<div class="h1">@TempData["errordesc1"]  Error - @TempData["errorcode"].</div>
+<hr />
+<div class="h2">Sorry... @TempData["errordesc2"].</div>
+
+<div class="h6 mt-5">@Html.ActionLink("Go Back To Home Page", "Index", "Home")</div>

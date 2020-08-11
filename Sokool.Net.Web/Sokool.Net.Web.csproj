@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\BaseController.cs" />
+    <Compile Remove="Controllers\DocumentController.cs" />
+    <Compile Remove="Controllers\ErrorHandlerController.cs" />
+    <Compile Remove="Controllers\HomeController_Old.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\Home\Index_old.cshtml" />
+    <Content Remove="Views\Samples\ReadFile.cshtml" />
+    <Content Remove="Views\Shared\_HeaderNavBarOld.cshtml" />
+    <Content Remove="Views\Videos\Index - Copy.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Assets\" />
+    <Folder Include="wwwroot\lib\jquery-ui\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Samples\Centering.htm" />
+    <None Include="wwwroot\Samples\Gallery.htm" />
+    <None Include="wwwroot\Samples\jQueryDialog.htm" />
+    <None Include="wwwroot\Samples\NavBar1.htm" />
+    <None Include="wwwroot\Samples\NavBar2.htm" />
+    <None Include="wwwroot\Samples\NavBar3.htm" />
+    <None Include="wwwroot\Samples\Tabs.htm" />
+    <None Include="wwwroot\Samples\Video.htm" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Rick.Docs.Samples.RouteInfo" Version="1.0.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Sokool.Net.DataLibrary\Sokool.Net.DataLibrary.csproj" />
+  </ItemGroup>
+
+</Project>

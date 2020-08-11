@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Photo>
+
+@section Styles {
+	<link rel="stylesheet" href="~/css/photos.css" />
+}
+
+@{
+	await Html.RenderPartialAsync("_HeaderTabBar");
+}
+
+<div class="container">
+	<div class="grid mt-1 mt-md-2">
+		@foreach (Photo photo in Model)
+		{
+		   <img src="@Url.Content(photo.Path)" asp-append-version="true" alt="@photo.Description" title="Click here to enlarge '@photo.Description'..." onclick="display(this);" />
+		}
+	</div>
+	<div id="divimage" class="modal justify-content-center" style="text-align: center;">
+		<div class="mt-2">
+			<span class="clickanywhere">Click anywhere to return to thumbnails...</span>
+		</div>
+		<div id="caption"></div>
+		<div class="outer-wrapper">
+			<div class="frame" style="display: inline-block;">
+				<img class="modal-content p-2 p-sm-2 p-md-3 p-lg-4" id="modalimg" alt="photo" style="height: 90%;width:90%">
+			</div>
+		</div>
+	</div>
+</div>
+
+@section Scripts {
+	<script type="text/javascript" src="~/js/_photos1.js"></script>
+}

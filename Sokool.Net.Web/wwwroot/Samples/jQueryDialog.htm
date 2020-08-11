@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>Sample BootStrap Tab Control</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome.css" />
+	<link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+	<link rel="stylesheet" href="/lib/jquery-ui/jquery-ui.css" />
+	<!--<link rel="stylesheet" href="/css/site.css" />-->
+	<style type="text/css">
+		.modal-content {
+			display: none;
+		}
+
+		.modal-dialog {
+			position: relative !important;
+		}
+	</style>
+</head>
+<body>
+	<form action="">
+		<div class="row mt-3 jumbotron">
+			<div class="col-2 p-sm-0 m-0">
+				<button id="back" class="btn btn-outline-primary">&laquo;&nbsp;Back</button>
+			</div>
+			<div class="col-10 text-center">
+				<div class="h2">jQuery UI Standard Modal Dialog</div>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="mt-5 mb-2">
+				<p>
+					Click the <button id="run" class="ui-button ui-corner-all ui-widget ml-1">Show...</button> button
+					to display a "moveable" modal dialog box requiring input from the user. Moveable modal dialog is not
+					available in BootStrap nor is this particular dialog moveable on mobile devices.
+				</p>
+			</div>
+
+			<p>Clicking the <b>OK</b> button in the dialog displays a message using window.alert</p>
+			<div id="testdlg" title="jQuery UI Dialog">
+				<p>This is a jQuery Dialog</p>
+			</div>
+		</div>
+		<script type="text/javascript" src="/lib/jquery/dist/jquery.js"></script>
+		<script type="text/javascript" src="/lib/bootstrap/dist/js/bootstrap.js"></script>
+		<script type="text/javascript" src="/lib/jquery-ui/jquery-ui.js"></script>
+		<script type="text/javascript" src="/js/_samples.js"></script>
+		<script type="text/javascript">
+			$(function () {
+				// Hook the click event on document ready
+				$("#run").on("click", function () {
+					showErrorDialog();
+					return false;
+				});
+				// Make sure the dialog div is hidden:
+				$('#testdlg').hide();
+			});
+			function showErrorDialog() {
+				// Select the dialog div and show it as a jQuery dialog
+				$('#testdlg').dialog({
+					autoOpen: true,
+					resizable: false,
+					modal: true,
+					width: 400,
+					open: function () {
+						const ipAddress = "192.168.10.50";
+						const urlRoot = `http://${ipAddress}`;
+						const msg = `Could not reconnect to IP Address: <b>${ipAddress}</b></br></br>After closing this dialog,
+																try typing the following directly into</br>this browser's address bar: <b>${urlRoot}</b> ...`;
+						jQuery(this).html(msg);
+					},
+					buttons: {
+						'OK': function () {
+							$(this).dialog('close');
+							window.alert(`Hello from '${window.location.href}'!`);
+						},
+						'Cancel': function () {
+							$(this).dialog('close');
+						}
+					}
+				});
+			}
+		</script>
+	</form>
+</body>
+</html>

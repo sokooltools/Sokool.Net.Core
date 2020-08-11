@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Sample>
+
+@{
+	const string ACTION_DIVIDE_BY_ZERO = "/Samples/DivideByZeroException";
+	const string ACTION_NULL_REFERENCE = "/Samples/NullReferenceException";
+	const string ACTION_UNAUTHORIZED = "/Samples/Unauthorized";
+	const string ACTION_UNAVAILABLE = "/Samples/Unavailable";
+	const string ACTION_REQUESTTIMEOUT = "/Samples/RequestTimeout";
+	const string ACTION_BADREQUEST = "/Samples/BadRequest";
+	const string ACTION_FORBIDDEN = "/Samples/";
+	const string ACTION_UNKNOWN = "/Samples/bogus";
+}
+
+<link rel="stylesheet" href="~/css/samples.css" />
+
+<div class="container ">
+	<p>This page is used to test out functionalities used throughout this website.</p>
+	<div class="table">
+		<div class="row">
+			<div class="col-12 card pt-1" style="width: 20rem;">
+				<div class="card-body pt-1">
+					<h6 class="card-title">Click any of these links to open an html file using the corresponding functionality:</h6>
+					@foreach (Sample sample in Model)
+					{
+						<div class="photo-div">
+							<a class="nav-link" href='@sample.VirtualPath'><i class="fab fa-fw fa-html5"></i>@sample.Name</a>
+						</div>
+					}
+				</div>
+			</div>
+			<div class="col-12 card pt-1 mt-3" style="width: 20rem;">
+				<div class="card-body pt-1">
+					<h6 class="card-title">Click any of these buttons to generate a custom view corresponding to the error:</h6>
+					<div class="error-div">
+						<a class="nav-link alert-danger" href="@ACTION_BADREQUEST"><i class="fa fa-fw fa-exclamation-circle"></i>400 - BadRequest</a>
+					</div>
+					<div class="error-div">
+						<a class="nav-link alert-danger" href="@ACTION_UNAUTHORIZED"><i class="fa fa-fw fa-exclamation-circle"></i>401 - Authentication</a>
+					</div>
+					<div class="error-div">
+						<a class="nav-link alert-danger" href="@ACTION_FORBIDDEN"><i class="fa fa-fw fa-exclamation-circle"></i>403 - Forbidden</a>
+					</div>
+					<div class="error-div">
+						<a class="nav-link alert-danger" href="@ACTION_UNKNOWN"><i class="fa fa-fw fa-exclamation-circle"></i>404 - NotFound</a>
+					</div>
+					<div class="error-div">
+						<a class="nav-link alert-danger" href="@ACTION_REQUESTTIMEOUT"><i class="fa fa-fw fa-exclamation-circle"></i>408 - RequestTimeout</a>
+					</div>
+					<div class="error-div">
+						<a class="nav-link alert-danger" href="@ACTION_DIVIDE_BY_ZERO"><i class="fa fa-fw fa-exclamation-circle"></i>500 - DivideByZeroException</a>
+					</div>
+					<div class="error-div">
+						<a class="nav-link alert-danger" href="@ACTION_NULL_REFERENCE"><i class="fa fa-fw fa-exclamation-circle"></i>500 - NullReferenceException</a>
+					</div>
+					<div class="error-div">
+						<a class="nav-link alert-danger" href="@ACTION_UNAVAILABLE"><i class="fa fa-fw fa-exclamation-circle"></i>503 - ServiceUnavailable</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+@section Scripts {
+	@*<script src="~/js/_samples.js"></script>*@
+}

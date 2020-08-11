@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>Sample BootStrap Hamburger</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome.css" />
+	<link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css" />
+	<link rel="stylesheet" href="/css/site.css" />
+	<style>
+		.navbar-dark .nav-item > .nav-link.active {
+			color: white;
+			background-color: red;
+		}
+
+		.fa-1x {
+			font-size: 1.5rem;
+		}
+
+		.navbar-toggler.toggler-example {
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="row jumbotron" style="margin-top: 6rem;">
+			<div class="col col-1 p-0 m-0">
+				<button id="back" class="btn btn-outline-primary">&laquo;&nbsp;Back</button>
+			</div>
+			<div class="col col-11 text-center">
+				<div class="h2">Sample BootStrap Hamburger</div>
+			</div>
+		</div>
+		<hr />
+		<span>Try to resize the browser window to see the responsive effect.</span>
+		<!--Navbar-->
+		<nav class="container-fluid navbar navbar-expand-sm bg-dark navbar-dark fixed-top pl-2">
+			<!-- Navbar brand -->
+			<a class="navbar-brand" href="#">Navbar</a>
+			<!-- Collapse button -->
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent41"
+					aria-controls="navbarSupportedContent41" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="text-primary"><i class="fa fa-bars fa-1x"></i></span>
+			</button>
+			<!-- Collapsible content -->
+			<div class="collapse navbar-collapse" id="navbarSupportedContent41">
+				<!-- Links -->
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="#">Home </a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Features</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Pricing</a>
+					</li>
+				</ul>
+				<!-- Links -->
+			</div>
+			<!-- Collapsible content -->
+		</nav>
+		<!--/.Navbar-->
+	</div>
+	<script type="text/javascript" src="/lib/jquery/dist/jquery.js"></script>
+	<script type="text/javascript" src="/lib/bootstrap/dist/js/bootstrap.js"></script>
+	<script type="text/javascript" src="/lib/jquery-ui/jquery-ui.js"></script>
+	<script type="text/javascript" src="/js/_site.js"></script>
+	<script type="text/javascript" src="/js/_samples.js"></script>
+
+	<script>
+		$('.navbar-nav .nav-link').click(function () {
+			$('.navbar-nav .nav-link').removeClass('active');
+			$(this).addClass('active');
+		})
+	</script>
+</body>
+</html>

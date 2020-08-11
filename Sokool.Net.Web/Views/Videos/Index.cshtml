@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Video>
+
+@section Styles {
+	<link rel="stylesheet" href="~/css/videos.css" />
+}
+
+@{
+	await Html.RenderPartialAsync("_HeaderTabBar");
+}
+
+<div class="container">
+	<table class="table mt-1">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th class="text-right">Length</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (Video video in Model)
+			{
+				<tr>
+					<td class="video-name">
+						<a class="video-link" href='@Url.Action("Show", "Videos", new {vf = video.VirtualFolder, fn = video.FileName})'><i class="fa fa-fw fa-video-camera pr-1"></i>@video.FileName</a>
+					</td>
+					<td class="video-length">
+						@($"{video.Length / 1024:###,### KB}")
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>
+
+@section Scripts {
+	<script src="~/js/_videos.js"></script>
+}

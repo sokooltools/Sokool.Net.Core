@@ -1,0 +1,20 @@
+﻿@model IEnumerable<Sample>
+
+@*<link rel="stylesheet" href="~/Content/css/samples.css" />*@
+
+<div class="container">
+	<div class="row">
+		<div>
+			@foreach (Sample sample in Model.Where(m => !m.Name.StartsWith("_")))
+			{
+				<div class="photo-div">
+					<a href="@Url.Action(@sample.Name, "Samples")" class="nav-link"><i class="fa fa-fw fa-html5"></i>@sample.Name</a>
+				</div>
+			}
+		</div>
+	</div>
+</div>
+
+@section Scripts {
+	@*<script src="~/js/_samples.js"></script>*@
+}
