@@ -10,17 +10,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\Samples\Centering.htm" />
-    <None Include="wwwroot\Samples\Gallery.htm" />
-    <None Include="wwwroot\Samples\jQueryDialog.htm" />
-    <None Include="wwwroot\Samples\NavBar1.htm" />
-    <None Include="wwwroot\Samples\NavBar2.htm" />
-    <None Include="wwwroot\Samples\NavBar3.htm" />
-    <None Include="wwwroot\Samples\Tabs.htm" />
-    <None Include="wwwroot\Samples\Video.htm" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.7" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.7" />

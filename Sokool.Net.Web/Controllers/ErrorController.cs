@@ -39,7 +39,7 @@ namespace Sokool.Net.Web.Controllers
 			ViewBag.ExceptionMessage = exceptionDetails.Error.Message;
 			ViewBag.Stacktrace = exceptionDetails.Error.StackTrace;
 
-			_logger.LogError($"The path {exceptionDetails.Path} threw an exception {exceptionDetails.Error.Message}");
+			_logger.LogError($"The path {exceptionDetails.Path} threw an exception: {exceptionDetails.Error.Message}");
 
 			return View("Exception");
 		}

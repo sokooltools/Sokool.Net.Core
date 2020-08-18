@@ -1,18 +1,5 @@
 ﻿@model IEnumerable<Sample>
 
-@{
-	const string ACTION_DIVIDE_BY_ZERO = "/Samples/DivideByZeroException";
-	const string ACTION_NULL_REFERENCE = "/Samples/NullReferenceException";
-	const string ACTION_UNAVAILABLE = "/Samples/Test?StatusCode=503";
-	const string ACTION_BADREQUEST = "/Samples/Test?StatusCode=400";
-	const string ACTION_UNAUTHORIZED = "/Samples/Test?StatusCode=401";
-	const string ACTION_FORBIDDEN = "/Samples/Test?StatusCode=403";
-	const string ACTION_UNKNOWN = "/Samples/Test?StatusCode=404";
-	const string ACTION_METHODNOTALLOWED = "/Samples/Test?StatusCode=405";
-	const string ACTION_NOTACCEPTABLE = "/Samples/Test?StatusCode=406";
-	const string ACTION_REQUESTTIMEOUT = "/Samples/Test?StatusCode=408";
-}
-
 <link rel="stylesheet" href="~/css/samples.css" />
 
 <div class="container ">
@@ -34,34 +21,34 @@
 				<div class="card-body pt-1">
 					<h6 class="card-title">Click any of these buttons to generate a custom view corresponding to the error:</h6>
 					<div class="error-div">
-						<a class="nav-link alert-danger" href="@ACTION_BADREQUEST"><i class="fa fa-fw fa-exclamation-circle"></i>400 - BadRequest</a>
+						<a class="nav-link alert-danger" asp-controller="Samples" asp-action="Test" asp-route-statuscode="400"><i class="fa fa-fw fa-exclamation-circle"></i>400 - BadRequest</a>
 					</div>
 					<div class="error-div">
-						<a class="nav-link alert-danger" href="@ACTION_UNAUTHORIZED"><i class="fa fa-fw fa-exclamation-circle"></i>401 - Authentication</a>
+						<a class="nav-link alert-danger" asp-controller="Samples" asp-action="Test" asp-route-statuscode="401"><i class="fa fa-fw fa-exclamation-circle"></i>401 - Authentication</a>
 					</div>
 					<div class="error-div">
-						<a class="nav-link alert-danger" href="@ACTION_FORBIDDEN"><i class="fa fa-fw fa-exclamation-circle"></i>403 - Forbidden</a>
+						<a class="nav-link alert-danger" asp-controller="Samples" asp-action="Test" asp-route-statuscode="403"><i class="fa fa-fw fa-exclamation-circle"></i>403 - Forbidden</a>
 					</div>
 					<div class="error-div">
-						<a class="nav-link alert-danger" href="@ACTION_UNKNOWN"><i class="fa fa-fw fa-exclamation-circle"></i>404 - NotFound</a>
+						<a class="nav-link alert-danger" asp-controller="Samples" asp-action="Test" asp-route-statuscode="404"><i class="fa fa-fw fa-exclamation-circle"></i>404 - NotFound</a>
 					</div>
 					<div class="error-div">
-						<a class="nav-link alert-danger" href="@ACTION_METHODNOTALLOWED"><i class="fa fa-fw fa-exclamation-circle"></i>405 - MethodNotAllowed</a>
+						<a class="nav-link alert-danger" asp-controller="Samples" asp-action="Test" asp-route-statuscode="405"><i class="fa fa-fw fa-exclamation-circle"></i>405 - MethodNotAllowed</a>
 					</div>
 					<div class="error-div">
-						<a class="nav-link alert-danger" href="@ACTION_NOTACCEPTABLE"><i class="fa fa-fw fa-exclamation-circle"></i>406 - NotAcceptable</a>
+						<a class="nav-link alert-danger" asp-controller="Samples" asp-action="Test" asp-route-statuscode="406"><i class="fa fa-fw fa-exclamation-circle"></i>406 - NotAcceptable</a>
 					</div>
 					<div class="error-div">
-						<a class="nav-link alert-danger" href="@ACTION_REQUESTTIMEOUT"><i class="fa fa-fw fa-exclamation-circle"></i>408 - RequestTimeout</a>
+						<a class="nav-link alert-danger" asp-controller="Samples" asp-action="Test" asp-route-statuscode="408"><i class="fa fa-fw fa-exclamation-circle"></i>408 - RequestTimeout</a>
 					</div>
 					<div class="error-div">
-						<a class="nav-link alert-danger" href="@ACTION_DIVIDE_BY_ZERO"><i class="fa fa-fw fa-exclamation-circle"></i>500 - DivideByZeroException</a>
+						<a class="nav-link alert-danger" asp-controller="Samples" asp-action="Test" asp-route-statuscode="503"><i class="fa fa-fw fa-exclamation-circle"></i>503 - ServiceUnavailable</a>
 					</div>
 					<div class="error-div">
-						<a class="nav-link alert-danger" href="@ACTION_NULL_REFERENCE"><i class="fa fa-fw fa-exclamation-circle"></i>500 - NullReferenceException</a>
+						<a class="nav-link alert-danger" asp-controller="Samples" asp-action="DivideByZeroException"><i class="fa fa-fw fa-exclamation-circle"></i>500 - DivideByZeroException</a>
 					</div>
 					<div class="error-div">
-						<a class="nav-link alert-danger" href="@ACTION_UNAVAILABLE"><i class="fa fa-fw fa-exclamation-circle"></i>503 - ServiceUnavailable</a>
+						<a class="nav-link alert-danger" asp-controller="Samples" asp-action="NullReferenceException"><i class="fa fa-fw fa-exclamation-circle"></i>500 - NullReferenceException</a>
 					</div>
 				</div>
 			</div>
