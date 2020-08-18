@@ -12,20 +12,17 @@
 installing this nuget package : Microsoft.EntityFrameworkCore.SqlServer  will install all dependent entity framework packages 
 		
 		https://fontawesome.com/cheatsheet/free/solid
-
+        https://fontawesome.com/account/cdn
 
 Data Source=(localdb)\MSSQLLocalDB;Integrated Security=True;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;
+------------------------------------------------------------------------------------------------------------------------
+Add taghelpers by entering into the _ViewImports.cshtml
+
+@addTagHelper *, Sokool.Net.Web
 
 ---------------------------------------------------------------------------------------------------------------------------
 
 PM> get-help entityframework
-
-                     _/\__
-               ---==/    \\
-         ___  ___   |.    \|\
-        | __|| __|  |  )   \\\
-        | _| | _|   \_/ |  //|\\
-        |___||_|       /   \\\/\\
 
 TOPIC
     about_EntityFrameworkCore
@@ -42,21 +39,13 @@ LONG DESCRIPTION
         Cmdlet                      Description
         --------------------------  ---------------------------------------------------
         Add-Migration               Adds a new migration.
-
         Drop-Database               Drops the database.
-
         Get-DbContext               Gets information about a DbContext type.
-
         Remove-Migration            Removes the last migration.
-
         Scaffold-DbContext          Scaffolds a DbContext and entity types for a database.
-
         Script-DbContext            Generates a SQL script from the current DbContext. 
-
         Script-Migration            Generates a SQL script from migrations.
-
         Update-Database             Updates the database to a specified migration.
-
 SEE ALSO
     Add-Migration
     Drop-Database
@@ -66,3 +55,52 @@ SEE ALSO
     Script-DbContext
     Script-Migration
     Update-Database
+
+------------------------------------------------------------------------------------------------------------------------
+
+PM> Add-Migration Init
+Build started...
+Build succeeded.
+To undo this action, use Remove-Migration.
+PM> 
+PM> update-database
+Build started...
+Build succeeded.
+Done.
+PM> 
+------------------------------------------------------------------------------------------------------------------------
+
+// PM> dotnet ef migrations add MyCommand1
+// PM> dotnet ef database update
+
+ASPNETCORE_ENVIRONMENT   Development
+
+
+
+------------------------------------------------------------------------------------------------------------------------
+,
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:64645",
+      "sslPort": 44366
+    }
+  },
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "EnvironmentsSample": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "applicationUrl": "https://localhost:5001;http://localhost:5000",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }

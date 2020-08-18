@@ -2,12 +2,14 @@ using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Sokool.Net.DataLibrary.Data;
+using Sokool.Net.DataLibrary.DataAccess;
 
 namespace Sokool.Net.Web
 {
@@ -24,14 +26,20 @@ namespace Sokool.Net.Web
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
-			const string conn = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SokoolNet;Integrated Security=True;";
-			services.AddDbContext<UserContext>(options => options.UseSqlServer(conn, b => b.MigrationsAssembly("Sokool.Net.DataLibrary")));
+			//const string conn = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SokoolNet;Integrated Security=True;";
+			//services.AddDbContext<UserContext>(options => options.UseSqlServer(conn, b => b.MigrationsAssembly("Sokool.Net.DataLibrary")));
+
+			services.AddDbContextPool<AppIdentityDbContext>(
+				options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"],
+					b => b.MigrationsAssembly("Sokool.Net.DataLibrary")));
+			services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<AppIdentityDbContext>().AddDefaultTokenProviders();
 
 			services.AddControllersWithViews();
-
 #if DEBUG
-			// Add nuget package: Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation before adding this line:
+			// Make sure to add the nuget package: Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation:
 			services.AddRazorPages().AddRazorRuntimeCompilation();
+			// Append the following to the preceding methods to temporarily disable client-side validation
+			// .AddViewOptions(options =>{options.HtmlHelperOptions.ClientValidationEnabled = false;});
 #endif
 		}
 
@@ -40,13 +48,23 @@ namespace Sokool.Net.Web
 		{
 			if (env.IsDevelopment())
 			{
-				app.UseDeveloperExceptionPage();
+				var developerExceptionPageOptions = new DeveloperExceptionPageOptions { SourceCodeLineCount = 10 };
+				app.UseDeveloperExceptionPage(developerExceptionPageOptions);
 			}
 			else  // See https://docs.microsoft.com/en-us/aspnet/core/fundamentals/error-handling?view=aspnetcore-3.1
 			{
-				//app.UseExceptionHandler("/Home/Error");
-				app.UseStatusCodePagesWithRedirects("/Home/Error/{0}");
+				app.UseExceptionHandler("/Error");
+				//app.UseHsts();
+				app.UseStatusCodePagesWithReExecute("/Error/{0}");
 			}
+
+			app.UseHttpsRedirection();
+			
+			//// The next four lines are for testing middleware pipeline. (They must come before UseStaticFiles!)
+			//var fileServerOptions = new FileServerOptions();
+			//fileServerOptions.DefaultFilesOptions.DefaultFileNames.Clear();
+			//fileServerOptions.DefaultFilesOptions.DefaultFileNames.Add("Samples/centering.htm");
+			//app.UseFileServer(fileServerOptions);
 
 			app.UseStaticFiles();
 
@@ -65,9 +83,21 @@ namespace Sokool.Net.Web
 				});
 			}
 
+			//// Uncomment this to test.
+			//app.Use(async (context, next) =>
+			//{
+			//	await context.Response.WriteAsync("Hello World");
+			//	await next();
+			//});
+			// Uncomment this to test exception handling.
+			//app.Run (context => throw new Exception("Some error processing the request"));
+
+
 			app.UseRouting();
 
 			app.UseAuthorization();
+
+			//app.UseMvcWithDefaultRoute();
 
 			app.UseEndpoints(endpoints =>
 			{

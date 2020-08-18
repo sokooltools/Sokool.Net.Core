@@ -8,11 +8,11 @@ using Sokool.Net.DataLibrary.Data;
 
 namespace Sokool.Net.Web.Models
 {
-	public class VideosModel : ConcurrentBag<Video>
+	public class VideosViewModel : ConcurrentBag<Video>
 	{
 		//------------------------------------------------------------------------------------------------------------------------
 		/// <summary>
-		/// Initializes a new instance of the <see cref="VideosModel" /> class.
+		/// Initializes a new instance of the <see cref="VideosViewModel" /> class.
 		/// </summary>
 		/// <param name="vf">The virtual folder containing the videos.</param>
 		/// <param name="physicalFolderPath">The physical folder path.</param>
@@ -20,7 +20,7 @@ namespace Sokool.Net.Web.Models
 		/// The extension used to limit the results. [All files in the virtual folder are returned by default]
 		/// </param>
 		//------------------------------------------------------------------------------------------------------------------------
-		public VideosModel(string vf, string physicalFolderPath, string extension = ".*")
+		public VideosViewModel(string vf, string physicalFolderPath, string extension = ".*")
 		{
 			IEnumerable<FileInfo> fileSystemEntries =
 				new DirectoryInfo(physicalFolderPath).EnumerateFiles("*" + extension, SearchOption.TopDirectoryOnly);

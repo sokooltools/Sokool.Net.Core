@@ -5,20 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Controllers\BaseController.cs" />
-    <Compile Remove="Controllers\DocumentController.cs" />
-    <Compile Remove="Controllers\ErrorHandlerController.cs" />
-    <Compile Remove="Controllers\HomeController_Old.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Remove="Views\Home\Index_old.cshtml" />
-    <Content Remove="Views\Samples\ReadFile.cshtml" />
-    <Content Remove="Views\Shared\_HeaderNavBarOld.cshtml" />
-    <Content Remove="Views\Videos\Index - Copy.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Assets\" />
     <Folder Include="wwwroot\lib\jquery-ui\" />
   </ItemGroup>
@@ -35,11 +21,19 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.7">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
     <PackageReference Include="Rick.Docs.Samples.RouteInfo" Version="1.0.0.4" />
   </ItemGroup>
 

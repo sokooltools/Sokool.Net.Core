@@ -3,12 +3,14 @@
 @{
 	const string ACTION_DIVIDE_BY_ZERO = "/Samples/DivideByZeroException";
 	const string ACTION_NULL_REFERENCE = "/Samples/NullReferenceException";
-	const string ACTION_UNAUTHORIZED = "/Samples/Unauthorized";
-	const string ACTION_UNAVAILABLE = "/Samples/Unavailable";
-	const string ACTION_REQUESTTIMEOUT = "/Samples/RequestTimeout";
-	const string ACTION_BADREQUEST = "/Samples/BadRequest";
-	const string ACTION_FORBIDDEN = "/Samples/";
-	const string ACTION_UNKNOWN = "/Samples/bogus";
+	const string ACTION_UNAVAILABLE = "/Samples/Test?StatusCode=503";
+	const string ACTION_BADREQUEST = "/Samples/Test?StatusCode=400";
+	const string ACTION_UNAUTHORIZED = "/Samples/Test?StatusCode=401";
+	const string ACTION_FORBIDDEN = "/Samples/Test?StatusCode=403";
+	const string ACTION_UNKNOWN = "/Samples/Test?StatusCode=404";
+	const string ACTION_METHODNOTALLOWED = "/Samples/Test?StatusCode=405";
+	const string ACTION_NOTACCEPTABLE = "/Samples/Test?StatusCode=406";
+	const string ACTION_REQUESTTIMEOUT = "/Samples/Test?StatusCode=408";
 }
 
 <link rel="stylesheet" href="~/css/samples.css" />
@@ -42,6 +44,12 @@
 					</div>
 					<div class="error-div">
 						<a class="nav-link alert-danger" href="@ACTION_UNKNOWN"><i class="fa fa-fw fa-exclamation-circle"></i>404 - NotFound</a>
+					</div>
+					<div class="error-div">
+						<a class="nav-link alert-danger" href="@ACTION_METHODNOTALLOWED"><i class="fa fa-fw fa-exclamation-circle"></i>405 - MethodNotAllowed</a>
+					</div>
+					<div class="error-div">
+						<a class="nav-link alert-danger" href="@ACTION_NOTACCEPTABLE"><i class="fa fa-fw fa-exclamation-circle"></i>406 - NotAcceptable</a>
 					</div>
 					<div class="error-div">
 						<a class="nav-link alert-danger" href="@ACTION_REQUESTTIMEOUT"><i class="fa fa-fw fa-exclamation-circle"></i>408 - RequestTimeout</a>

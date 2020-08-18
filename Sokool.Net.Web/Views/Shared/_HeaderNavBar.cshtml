@@ -1,12 +1,12 @@
 ﻿<header>
-	<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+	<nav class="navbar navbar-expand-sm  navbar-light bg-white border-bottom box-shadow mb-3">
 		<div class="container">
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
 			        aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-				<ul class="navbar-nav flex-grow-1">
+			<div class="navbar-collapse collapse d-sm-inline-flex">
+				<ul class="navbar-nav mr-auto">
 					<li class="nav-item">
 						<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index"><i class="fa fa-fw fa-home"></i>Home</a>
 					</li>
@@ -16,9 +16,9 @@
 					<li class="nav-item">
 						<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact"><i class="fa fa-fw fa-envelope"></i>Contact</a>
 					</li>
-					<li class="nav-item">
+					@*<li class="nav-item">
 						<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy"><i class="fa fa-fw fa-home"></i>Privacy</a>
-					</li>
+					</li>*@
 					<li class="nav-item">
 						<a class="nav-link text-dark" asp-area="" asp-controller="Photos" asp-action="Photos1" asp-route-id="0"><i class="fa fa-fw fa-user"></i>Photos1</a>
 					</li>
@@ -31,8 +31,13 @@
 					<li class="nav-item">
 						<a class="nav-link text-dark" asp-area="" asp-controller="Samples" asp-action="Samples1"><i class="fa fa-fw fa-list-alt"></i>Samples1</a>
 					</li>
+				</ul>
+				<ul class="navbar-nav ml-auto">
 					<li class="nav-item">
-						<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="SignUp"><i class="fa fa-fw fa-user-circle mr-md-1"></i>SignUp</a>
+						<a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login"><i class="fa fa-fw fa-user-circle"></i>Login</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register"><i class="fa fa-fw fa-user-circle"></i>Register</a>
 					</li>
 				</ul>
 			</div>

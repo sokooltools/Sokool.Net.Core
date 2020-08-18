@@ -24,7 +24,7 @@ namespace Sokool.Net.Web.Controllers
 		}
 
 		[HttpGet]
-		[Route("Photos/Photos1/{id:int?}", Name = "[controller]_[action]")]
+		[Route("[controller]/[action]/{id:int?}", Name = "[controller]_[action]")]
 		public ActionResult Photos1(int? id = 0)
 		{
 			Title = "Photos1";
@@ -34,7 +34,7 @@ namespace Sokool.Net.Web.Controllers
 		}
 
 		[HttpGet]
-		[Route("Photos/Photos2/{id:int?}", Name = "[controller]_[action]")]
+		[Route("[controller]/[action]/{id:int?}", Name = "[controller]_[action]")]
 		public ActionResult Photos2(int? id = 0)
 		{
 			Title = "Photos2";
@@ -64,7 +64,7 @@ namespace Sokool.Net.Web.Controllers
 			}
 			string physicalFolder = Utils.CombinePaths(_env.ContentRootPath, virtualFolder);
 
-			return new PhotosModel(virtualFolder, physicalFolder, ".jpg").ToList().OrderBy(m => m.Path);
+			return new PhotosViewModel(virtualFolder, physicalFolder, ".jpg").ToList().OrderBy(m => m.Path);
 		}
 	}
 }

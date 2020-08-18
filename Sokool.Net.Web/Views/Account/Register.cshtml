@@ -1,0 +1,87 @@
+﻿@model RegisterViewModel
+
+<div class="container text-nowrap">
+	<h4 class="display-4">Sign up for our online account</h4>
+	<hr />
+	<form method="post" asp-controller="Account" asp-action="Register">
+
+		<div asp-validation-summary="All" class="text-danger"></div>
+		<div class="form-group">
+			<label asp-for="UserId" class=".col-form-label col-md-2 h5"></label>
+			<div class="col-md-10">
+				<input asp-for="UserId" class="form-control"/>
+				<span asp-validation-for="UserId" class="text-danger"></span>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label asp-for="FirstName" class=".col-form-label col-md-2 h5"></label>
+			<div class="col-md-10">
+				<input asp-for="FirstName" class="form-control"/>
+				<span asp-validation-for="FirstName" class="text-danger"></span>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label asp-for="UserId" class=".col-form-label col-md-2 h5"></label>
+			<div class="col-md-10">
+				<input asp-for="LastName" class="form-control"/>
+				<span asp-validation-for="LastName" class="text-danger"></span>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label asp-for="EmailAddress" class=".col-form-label col-md-2 h5"></label>
+			<div class="col-md-10">
+				<input asp-for="EmailAddress" class="form-control"/>
+				<span asp-validation-for="EmailAddress" class="text-danger"></span>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label asp-for="ConfirmEmail" class=".col-form-label col-md-2 h5"></label>
+			<div class="col-md-10">
+				<input asp-for="ConfirmEmail" class="form-control"/>
+				<span asp-validation-for="ConfirmEmail" class="text-danger"></span>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label asp-for="Password" class=".col-form-label col-md-2 h5"></label>
+			<div class="col-md-10">
+				<input asp-for="Password" class="form-control"/>
+				<span asp-validation-for="Password" class="text-danger"></span>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label asp-for="ConfirmPassword" class=".col-form-label col-md-2 h5"></label>
+			<div class="col-md-10">
+				<input asp-for="ConfirmPassword" class="form-control"/>
+				<span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-md-12">
+				<input type="submit" value="Create" class="btn btn-primary"/>
+			</div>
+		</div>
+	</form>
+</div>
+
+<div class="btn-link">
+	@Html.ActionLink("Back to Home", "Index", "Home")
+</div>
+
+@section Scripts {
+
+	<environment include="Development">
+		<script type="text/javascript" src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+		<script type="text/javascript" src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+	</environment>
+	<environment exclude="Development">
+		<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+		<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+	</environment>
+}

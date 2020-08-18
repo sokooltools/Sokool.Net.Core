@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Sokool.Net.DataLibrary.Data;
 
 namespace Sokool.Net.DataLibrary.BusinessLogic
@@ -29,5 +30,11 @@ namespace Sokool.Net.DataLibrary.BusinessLogic
 			//return SqlDataAccess.LoadData<User>(sql); // TODO:
 			return new List<User>();
 		}
+
+		public static bool LoginUser(string emailAddress, string password, bool rememberMe)
+		{
+			return  true;
+		}
+
 	}
 }

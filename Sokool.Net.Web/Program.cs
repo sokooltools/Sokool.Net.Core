@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Console;
 
 namespace Sokool.Net.Web
 {
@@ -17,5 +19,14 @@ namespace Sokool.Net.Web
 				{
 					webBuilder.UseStartup<Startup>();
 				});
+
+		//.ConfigureLogging(loggingBuilder =>
+		//	loggingBuilder.AddFilter<ConsoleLoggerProvider>(level => level == LogLevel.Information));
+
+		//.ConfigureLogging((loggingBuilder) =>
+		//{
+		//	// Clear default logging providers
+		//	loggingBuilder.ClearProviders();
+		//})
 	}
 }

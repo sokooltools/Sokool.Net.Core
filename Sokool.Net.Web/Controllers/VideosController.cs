@@ -37,7 +37,7 @@ namespace Sokool.Net.Web.Controllers
 			if (!Directory.Exists(physicalFolderPath))
 				throw new InvalidOperationException("The specified directory does not exist.");
 
-			return View(new VideosModel(vf, physicalFolderPath, ".mp4").Sort());
+			return View(new VideosViewModel(vf, physicalFolderPath, ".mp4").Sort());
 		}
 
 		[HttpGet]

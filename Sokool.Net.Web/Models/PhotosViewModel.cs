@@ -7,17 +7,17 @@ using Sokool.Net.DataLibrary.Data;
 
 namespace Sokool.Net.Web.Models
 {
-	public class PhotosModel : ConcurrentBag<Photo>
+	public class PhotosViewModel : ConcurrentBag<Photo>
 	{
 		//------------------------------------------------------------------------------------------------------------------------
 		/// <summary>
-		/// Initializes a new instance of the <see cref="PhotosModel" /> class.
+		/// Initializes a new instance of the <see cref="PhotosViewModel" /> class.
 		/// </summary>
 		/// <param name="virtualFolder">The virtual folder containing the images.</param>
 		/// <param name="physicalFolder">The physical folder containing the images.</param>
 		/// <param name="extension">The extension used to limit the results. [All files in the virtual folder are returned by default]</param>
 		//------------------------------------------------------------------------------------------------------------------------
-		public PhotosModel(string virtualFolder, string physicalFolder, string extension = ".*")
+		public PhotosViewModel(string virtualFolder, string physicalFolder, string extension = ".*")
 		{
 			IEnumerable<FileInfo> fileSystemEntries =
 				new DirectoryInfo(physicalFolder).EnumerateFiles("*" + extension, SearchOption.TopDirectoryOnly);
