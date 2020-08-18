@@ -10,7 +10,7 @@ namespace Sokool.Net.Web.Models
 		public string EmailAddress { get; set; }
 		
 		[Display(Name = "Password")]
-		[Required(ErrorMessage = "You need to provide a password.")]
+		[Required(ErrorMessage = "You need to provide your password.")]
 		[DataType(DataType.Password)]
 		public string Password { get; set; }
 		

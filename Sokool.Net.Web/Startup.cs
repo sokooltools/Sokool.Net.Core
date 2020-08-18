@@ -32,7 +32,19 @@ namespace Sokool.Net.Web
 			services.AddDbContextPool<AppIdentityDbContext>(
 				options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"],
 					b => b.MigrationsAssembly("Sokool.Net.DataLibrary")));
-			services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<AppIdentityDbContext>().AddDefaultTokenProviders();
+			
+			services.AddIdentity<AppUser, IdentityRole>(options =>
+			{
+				options.Password.RequiredLength = 8; 
+				options.Password.RequiredUniqueChars = 3;
+			}).AddEntityFrameworkStores<AppIdentityDbContext>().AddDefaultTokenProviders();
+
+			//services.Configure<IdentityOptions>(options =>
+			//{
+			//	options.Password.RequiredLength = 8; 
+			//	options.Password.RequiredUniqueChars = 3;
+			//});
+
 
 			services.AddControllersWithViews();
 #if DEBUG
@@ -95,7 +107,10 @@ namespace Sokool.Net.Web
 
 			app.UseRouting();
 
-			app.UseAuthorization();
+			//app.UseAuthorization();
+
+			// Authentication middleware
+			app.UseAuthentication();
 
 			//app.UseMvcWithDefaultRoute();
 

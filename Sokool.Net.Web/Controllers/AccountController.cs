@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Sokool.Net.DataLibrary.BusinessLogic;
+using Sokool.Net.DataLibrary.Data;
 using Sokool.Net.Web.Models;
 using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
@@ -16,18 +16,16 @@ namespace Sokool.Net.Web.Controllers
 		public string Title { get; set; }
 
 		private readonly ILogger<AccountController> _logger;
-		//private readonly UserManager<IdentityUser> _userManager;
-		//private readonly SignInManager<IdentityUser> _signInManager;
+		private readonly UserManager<AppUser> _userManager;
+		private readonly SignInManager<AppUser> _signInManager;
 
 		public AccountController(
-			ILogger<AccountController> logger
-			//,UserManager<IdentityUser> userManager,
-			//SignInManager<IdentityUser> signInManager
+			ILogger<AccountController> logger, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager
 			)
 		{
 			_logger = logger;
-			//_userManager = userManager;
-			//_signInManager = signInManager;
+			_userManager = userManager;
+			_signInManager = signInManager;
 		}
 
 		[HttpGet]
@@ -40,16 +38,27 @@ namespace Sokool.Net.Web.Controllers
 		}
 
 		[HttpPost]
-		//[ValidateAntiForgeryToken]
-		public IActionResult Register(RegisterViewModel model)
+		public async Task<IActionResult> Register(RegisterViewModel model)
 		{
-			if (!ModelState.IsValid)
+			if (ModelState.IsValid)
 			{
-				ModelState.AddModelError("MyError", "You have entered some invalid data. (See below)");
-				return View();
+				//UserProcessor.CreateUser(model.UserId, model.FirstName, model.LastName, model.EmailAddress);
+				var user = new AppUser { UserName = model.Email, Email = model.Email };
+				IdentityResult result = await _userManager.CreateAsync(user, model.Password);
+
+				if (result.Succeeded)
+				{
+					await _signInManager.SignInAsync(user, isPersistent: false);
+					return RedirectToAction("Index", "Home");
+				}
+
+				foreach (IdentityError error in result.Errors)
+				{
+					ModelState.AddModelError("", error.Description);
+				}
 			}
-			UserProcessor.CreateUser(model.UserId, model.FirstName, model.LastName, model.EmailAddress);
-			return RedirectToAction("Index", "Home");
+			//ModelState.AddModelError("MyError", "You have entered some invalid data. (Please see below)");
+			return View(model);
 		}
 
 		[HttpGet]
@@ -66,14 +75,14 @@ namespace Sokool.Net.Web.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				//SignInResult result = await _signInManager.PasswordSignInAsync(model.EmailAddress, model.Password, model.RememberMe, false);
-				//if (result.Succeeded)
-				//{
-				//	return RedirectToAction("Index", "Home");
-				//}
+				SignInResult result = await _signInManager.PasswordSignInAsync(model.EmailAddress, model.Password, model.RememberMe, false);
+				if (result.Succeeded)
+				{
+					return RedirectToAction("Index", "Home");
+				}
 				ModelState.AddModelError(String.Empty, "Invalid Login Attempt");
 			}
-			//ModelState.AddModelError("MyError", "You have entered some invalid data. (See below)");
+			ModelState.AddModelError("MyError", "You have entered some invalid data. (See below)");
 			//return RedirectToAction("Index", "Home");
 			return View(model);
 		}
@@ -81,7 +90,7 @@ namespace Sokool.Net.Web.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Logout()
 		{
-			//await _signInManager.SignOutAsync();
+			await _signInManager.SignOutAsync();
 			return RedirectToAction("Index", "Home");
 		}
 	}
