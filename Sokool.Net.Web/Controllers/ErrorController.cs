@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -31,15 +32,19 @@ namespace Sokool.Net.Web.Controllers
 
 		[Route("Error")]
 		[AllowAnonymous]
+		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 		public IActionResult Error()
 		{
-			// Log the following:
 			var exceptionDetails = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
-			ViewBag.ExceptionPath = exceptionDetails.Path;
-			ViewBag.ExceptionMessage = exceptionDetails.Error.Message;
-			ViewBag.Stacktrace = exceptionDetails.Error.StackTrace;
+			
+			//ViewBag.ExceptionPath = exceptionDetails.Path;
+			//ViewBag.ExceptionMessage = exceptionDetails.Error.Message;
+			//ViewBag.Stacktrace = exceptionDetails.Error.StackTrace;
 
-			_logger.LogError($"The path {exceptionDetails.Path} threw an exception: {exceptionDetails.Error.Message}");
+			string nl = Environment.NewLine;
+			string stackTrace = exceptionDetails.Error.StackTrace;
+			string firstLine = stackTrace?.Substring(0, stackTrace.IndexOf(nl, StringComparison.Ordinal)).Replace(" in ",$"{nl}in ");
+			_logger.LogError($"The path {exceptionDetails.Path} threw an exception: {exceptionDetails.Error.Message}{nl}{firstLine}");
 
 			return View("Exception");
 		}

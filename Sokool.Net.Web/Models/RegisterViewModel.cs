@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
+using Sokool.Net.Web.Utilities;
 
 namespace Sokool.Net.Web.Models
 {
@@ -7,18 +9,20 @@ namespace Sokool.Net.Web.Models
 		//[Display(Name = "User ID")]
 		//[Range(1, 9999, ErrorMessage = "You need to enter a user id")]
 		//public int UserId { get; set; }
-		
-		//[Display(Name = "First Name")]
-		//[Required(ErrorMessage = "You need to provide your first name.")]
-		//public string FirstName { get; set; }
-		
-		//[Display(Name = "Last Name")]
-		//[Required(ErrorMessage = "You need to provide your last name.")]
-		//public string LastName { get; set; }
-		
+
+		[Display(Name = "First Name")]
+		[Required(ErrorMessage = "You need to provide your first name.")]
+		public string FirstName { get; set; }
+
+		[Display(Name = "Last Name")]
+		[Required(ErrorMessage = "You need to provide your last name.")]
+		public string LastName { get; set; }
+
 		[Display(Name = "Email Address")]
 		[Required(ErrorMessage = "You need to provide your email address.")]
 		[EmailAddress]
+		[Remote(action: "IsEmailInUse", controller: "Account")] // This uses jQuery validation
+		//[ValidEmailDomain(allowedDomain: "sokool.net", ErrorMessage = "Email domain must be sokool.net")]  // <- this demonstrates custom validation
 		[DataType(DataType.EmailAddress)]
 		public string Email { get; set; }
 		

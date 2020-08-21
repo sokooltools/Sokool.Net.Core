@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -29,6 +30,7 @@ namespace Sokool.Net.Web.Controllers
 		}
 
 		[HttpGet]
+		[AllowAnonymous]
 		public IActionResult Register()
 		{
 			Title = "User Sign Up";
@@ -37,53 +39,74 @@ namespace Sokool.Net.Web.Controllers
 			return View(new RegisterViewModel());
 		}
 
+		[AcceptVerbs("Get","Post")]
+		[AllowAnonymous]
+		public async Task<IActionResult> IsEmailInUse(string email)
+		{
+			AppUser user = await _userManager.FindByEmailAsync(email);
+			return user == null ? Json(true) : Json($"Email {email} is already in use");
+		}
+
 		[HttpPost]
+		[AllowAnonymous]
 		public async Task<IActionResult> Register(RegisterViewModel model)
 		{
-			if (ModelState.IsValid)
+			if (!ModelState.IsValid) 
+				return View(model);
+
+			var user = new AppUser { 
+				UserName = model.Email, 
+				Email = model.Email,
+				FirstName = model.FirstName,
+				LastName = model.LastName
+			};
+
+			IdentityResult result = await _userManager.CreateAsync(user, model.Password);
+
+			if (result.Succeeded)
 			{
-				//UserProcessor.CreateUser(model.UserId, model.FirstName, model.LastName, model.EmailAddress);
-				var user = new AppUser { UserName = model.Email, Email = model.Email };
-				IdentityResult result = await _userManager.CreateAsync(user, model.Password);
-
-				if (result.Succeeded)
+				// If the user is signed in and in the Admin role, then it is
+				// the Admin user that is creating a new user. So redirect the
+				// Admin user to ListRoles action
+				if (_signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
 				{
-					await _signInManager.SignInAsync(user, isPersistent: false);
-					return RedirectToAction("Index", "Home");
+					return RedirectToAction("ListUsers", "Administration");
 				}
 
-				foreach (IdentityError error in result.Errors)
-				{
-					ModelState.AddModelError("", error.Description);
-				}
+				await _signInManager.SignInAsync(user, isPersistent: false);
+				return RedirectToAction("Index", "Home");
 			}
-			//ModelState.AddModelError("MyError", "You have entered some invalid data. (Please see below)");
+			foreach (IdentityError error in result.Errors)
+			{
+				ModelState.AddModelError("", error.Description);
+			}
 			return View(model);
 		}
 
 		[HttpGet]
-		public IActionResult Login()
+		[AllowAnonymous]
+		public IActionResult Login(string returnUrl)
 		{
 			Title = "User Login";
 			ViewBag.Message = "Login for full access to Sokool.net.";
-			return View(new LoginViewModel());
+			return View(new LoginViewModel { ReturnUrl = returnUrl});
 		}
 
 		[HttpPost]
-		//[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Login(LoginViewModel model)
+		[AllowAnonymous]
+		public async Task<IActionResult> Login(LoginViewModel model, string returnUrl)
 		{
-			if (ModelState.IsValid)
+			if (!ModelState.IsValid) 
+				return View(model);
+
+			SignInResult result = await _signInManager.PasswordSignInAsync(model.EmailAddress, model.Password, model.RememberMe, false);
+			if (result.Succeeded)
 			{
-				SignInResult result = await _signInManager.PasswordSignInAsync(model.EmailAddress, model.Password, model.RememberMe, false);
-				if (result.Succeeded)
-				{
-					return RedirectToAction("Index", "Home");
-				}
-				ModelState.AddModelError(String.Empty, "Invalid Login Attempt");
+				return !String.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl)
+					? (IActionResult) Redirect(returnUrl)
+					: RedirectToAction("Index", "Home");
 			}
-			ModelState.AddModelError("MyError", "You have entered some invalid data. (See below)");
-			//return RedirectToAction("Index", "Home");
+			ModelState.AddModelError(String.Empty, "Invalid Login Attempt");
 			return View(model);
 		}
 
@@ -92,6 +115,14 @@ namespace Sokool.Net.Web.Controllers
 		{
 			await _signInManager.SignOutAsync();
 			return RedirectToAction("Index", "Home");
+		}
+
+		[HttpGet]
+		[AllowAnonymous]
+		public IActionResult AccessDenied()
+		{
+			Title = "Access Denied";
+			return View();
 		}
 	}
 }

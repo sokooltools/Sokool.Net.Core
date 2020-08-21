@@ -1,46 +1,67 @@
-﻿<header>
-	<nav class="navbar navbar-expand-sm  navbar-light bg-white border-bottom box-shadow mb-3">
-		<div class="container">
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-			        aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="navbar-collapse collapse d-sm-inline-flex">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item">
-						<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index"><i class="fa fa-fw fa-home"></i>Home</a>
+﻿@inject SignInManager<AppUser> SignInManager;
+<nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
+	<div class="container">
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+				aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="navbar-collapse collapse d-sm-inline-flex">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item">
+					<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index"><i class="fa fa-fw fa-home"></i>Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About"><i class="fa fa-fw fa-search"></i>About</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact"><i class="fa fa-fw fa-envelope"></i>Contact</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link text-dark" asp-area="" asp-controller="Photos" asp-action="Photos1" asp-route-id="0"><i class="fa fa-fw fa-user"></i>Photos1</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link text-dark" asp-area="" asp-controller="Photos" asp-action="Photos2" asp-route-id="0"><i class="fa fa-fw fa-user"></i>Photos2</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link text-dark" asp-area="" asp-controller="Videos" asp-action="Index" asp-route-vf="across"><i class="fa fa-fw fa-video"></i>Videos</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link text-dark" asp-area="" asp-controller="Samples" asp-action="Samples1"><i class="fa fa-fw fa-list-alt"></i>Samples1</a>
+				</li>
+				@if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+				{
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
+							<i class="fa fa-fw fa-user-lock"></i>Manage
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item nav-link text-dark" asp-controller="Administration" asp-action="ListUsers"><i class="fa fa-fw fa-list-alt"></i>Users</a>
+							<a class="dropdown-item nav-link text-dark" asp-controller="Administration" asp-action="ListRoles"><i class="fa fa-fw fa-list-alt"></i>Roles</a>
+						</div>
 					</li>
+				}
+			</ul>
+			<ul class="navbar-nav ml-auto">
+				@if (SignInManager.IsSignedIn(User))
+				{
 					<li class="nav-item">
-						<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About"><i class="fa fa-fw fa-search"></i>About</a>
+						<form method="post" asp-controller="Account" asp-action="Logout">
+							<button type="submit" class="nav-link btn btn-link py-0" style="width: auto;">
+								Logout @User.Identity.Name
+							</button>
+						</form>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact"><i class="fa fa-fw fa-envelope"></i>Contact</a>
-					</li>
-					@*<li class="nav-item">
-						<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy"><i class="fa fa-fw fa-home"></i>Privacy</a>
-					</li>*@
-					<li class="nav-item">
-						<a class="nav-link text-dark" asp-area="" asp-controller="Photos" asp-action="Photos1" asp-route-id="0"><i class="fa fa-fw fa-user"></i>Photos1</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link text-dark" asp-area="" asp-controller="Photos" asp-action="Photos2" asp-route-id="0"><i class="fa fa-fw fa-user"></i>Photos2</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link text-dark" asp-area="" asp-controller="Videos" asp-action="Index" asp-route-vf="across"><i class="fa fa-fw fa-video"></i>Videos</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link text-dark" asp-area="" asp-controller="Samples" asp-action="Samples1"><i class="fa fa-fw fa-list-alt"></i>Samples1</a>
-					</li>
-				</ul>
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item">
-						<a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login"><i class="fa fa-fw fa-user-circle"></i>Login</a>
-					</li>
+				}
+				else
+				{
 					<li class="nav-item">
 						<a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register"><i class="fa fa-fw fa-user-circle"></i>Register</a>
 					</li>
-				</ul>
-			</div>
+					<li class="nav-item">
+						<a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login"><i class="fa fa-fw fa-user-circle"></i>Login</a>
+					</li>
+				}
+			</ul>
 		</div>
-	</nav>
-</header>
+	</div>
+</nav>

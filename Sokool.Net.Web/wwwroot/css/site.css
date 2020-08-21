@@ -30,9 +30,8 @@ textarea {
 .navbar {
     width: 100%;
     background-color: #555;
-    overflow: auto;
+    /*overflow: auto;*/
 }
-
     .navbar a {
         float: left;
         padding: 12px;
@@ -46,7 +45,7 @@ textarea {
         }
 
 .navbar-dark .nav-item > .nav-link.active {
-    color: white;
+    color: rgb(200, 190, 190);
     background-color: red;
 }
 
@@ -54,7 +53,9 @@ textarea {
     background-color: #4CAF50;
 }
 
-
+.dropdown-item.active {
+    background-color: #4CAF50;
+}
 
 /* -------------------------------------------------- */
 

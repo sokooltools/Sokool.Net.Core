@@ -19,10 +19,12 @@ $(document).ready(function () {
         });
 
         function getInitPath(path) {
+            if (path === "#")
+                return path;
             // Special handling for "videos/show/xxxx"
-            const idx = path.indexOf("/videos"); 
-            if (idx > -1)
-               return "/videos/index";
+            //const idx = path.indexOf("/videos"); 
+            //if (idx > -1)
+            //   return "/videos/index";
             const arr = path.split("/");
             if (arr.length > 2)
                 return `/${arr[1]}/${arr[2]}`;

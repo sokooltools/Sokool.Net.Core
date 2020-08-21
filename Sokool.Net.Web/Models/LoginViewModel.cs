@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Sokool.Net.Web.Models
 {
@@ -16,5 +17,8 @@ namespace Sokool.Net.Web.Models
 		
 		[Display(Name = "Remember me")]
 		public bool RememberMe { get; set; }
+
+		[HiddenInput(DisplayValue = false)]
+		public string ReturnUrl { get; set; }
 	}
 }

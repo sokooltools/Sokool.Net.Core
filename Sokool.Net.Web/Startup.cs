@@ -1,8 +1,10 @@
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -44,7 +46,16 @@ namespace Sokool.Net.Web
 			//	options.Password.RequiredLength = 8; 
 			//	options.Password.RequiredUniqueChars = 3;
 			//});
-
+			
+			// The following causes the Login page to appear before any other actions can be performed
+			//services.AddMvc(options =>
+			//	{
+			//		AuthorizationPolicy policy = new AuthorizationPolicyBuilder()
+			//			.RequireAuthenticatedUser()
+			//			.Build();
+			//		options.Filters.Add(new AuthorizeFilter(policy));
+			//	}
+			//);
 
 			services.AddControllersWithViews();
 #if DEBUG
@@ -56,7 +67,9 @@ namespace Sokool.Net.Web
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+#pragma warning disable CA1822 // Mark members as static
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+#pragma warning restore CA1822 // Mark members as static
 		{
 			if (env.IsDevelopment())
 			{
@@ -70,7 +83,7 @@ namespace Sokool.Net.Web
 				app.UseStatusCodePagesWithReExecute("/Error/{0}");
 			}
 
-			app.UseHttpsRedirection();
+			//app.UseHttpsRedirection();
 			
 			//// The next four lines are for testing middleware pipeline. (They must come before UseStaticFiles!)
 			//var fileServerOptions = new FileServerOptions();
@@ -104,13 +117,12 @@ namespace Sokool.Net.Web
 			// Uncomment this to test exception handling.
 			//app.Run (context => throw new Exception("Some error processing the request"));
 
-
 			app.UseRouting();
-
-			//app.UseAuthorization();
 
 			// Authentication middleware
 			app.UseAuthentication();
+
+			app.UseAuthorization();
 
 			//app.UseMvcWithDefaultRoute();
 

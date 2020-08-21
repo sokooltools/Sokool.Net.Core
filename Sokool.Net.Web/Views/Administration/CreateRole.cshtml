@@ -1,0 +1,40 @@
+﻿@model CreateRoleViewModel
+
+<div class="container text-nowrap">
+	<h4 class="display-4">Create new Role</h4>
+	<hr />
+	<form method="post" asp-controller="Administration" asp-action="CreateRole">
+
+		<div asp-validation-summary="All" class="text-danger"></div>
+
+		<div class="form-group">
+			<label asp-for="RoleName" class=".col-form-label col-md-2 h5"></label>
+			<div class="col-md-10">
+				<input asp-for="RoleName" class="form-control" />
+				<span asp-validation-for="RoleName" class="text-danger"></span>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<div class="col-md-12">
+				<input type="submit" value="Create Role" class="btn btn-primary" />
+			</div>
+		</div>
+	</form>
+</div>
+
+<div class="btn-link">
+	@Html.ActionLink("Back to Home", "Index", "Home")
+</div>
+
+@section Scripts {
+
+	<environment include="Development">
+		<script type="text/javascript" src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+		<script type="text/javascript" src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+	</environment>
+	<environment exclude="Development">
+		<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+		<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+	</environment>
+}
