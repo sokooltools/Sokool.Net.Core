@@ -1,10 +1,7 @@
 ﻿@model IEnumerable<AppUser>
+@inject IAuthorizationService AuthorizationService;
 
-@{
-	ViewBag.Title = "All Users";
-}
-
-<h1>All Users</h1>
+<h1>@ViewData["Title"]</h1>
 
 @if (Model.Any())
 {
@@ -13,7 +10,7 @@
 		Add new user
 	</a>
 
-	foreach (var user in Model)
+	foreach (AppUser user in Model)
 	{
 		<div class="card mb-3">
 			<div class="card-header">
@@ -23,8 +20,23 @@
 				<h5 class="card-title">@user.UserName</h5>
 			</div>
 			<div class="card-footer">
-				<a href="#" class="btn btn-danger">Edit</a>
-				<a href="#" class="btn btn-danger">Delete</a>
+				<form method="post" asp-action="DeleteUser" asp-route-id="@user.Id">
+					@if ((await AuthorizationService.AuthorizeAsync(User, "EditUserPolicy")).Succeeded)
+					{
+						<a asp-controller="Administration" asp-action="Edituser" asp-route-id="@user.Id" class="btn btn-primary">Edit</a>
+					}
+					@if ((await AuthorizationService.AuthorizeAsync(User, "DeleteUserPolicy")).Succeeded)
+					{
+						<span id="deleteSpan_@user.Id">
+							<a href="#" class="btn btn-danger" onclick="confirmDelete('@user.Id', true)">Delete</a>
+						</span>
+						<span id="confirmDeleteSpan_@user.Id" style="display: none">
+							<span>Are you sure you want to delete?</span>
+							<button type="submit" class="btn btn-danger">Yes</button>
+							<a href="#" class="btn btn-primary" onclick="confirmDelete('@user.Id', false)">No</a>
+						</span>
+					}
+				</form>
 			</div>
 		</div>
 	}
@@ -39,10 +51,12 @@ else
 			<h5 class="card-title">
 				Use the button below to create a user
 			</h5>
-			<a class="btn btn-primary" style="width:auto"
-			   asp-controller="Account" asp-action="Register">
+			<a class="btn btn-primary w-auto" asp-controller="Account" asp-action="Register">
 				Add new user
 			</a>
 		</div>
 	</div>
+}
+@section Scripts {
+	<script src="~/js/_custom.js"></script>
 }

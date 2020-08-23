@@ -9,6 +9,10 @@ namespace Sokool.Net.Web.Controllers
 {
 	public class ErrorController : Controller
 	{
+		[ViewData]
+		// ReSharper disable once MemberCanBePrivate.Global
+		public string Title { get; set; }
+
 		private readonly ILogger<ErrorController> _logger;
 		private readonly IWebHostEnvironment _env;
 
@@ -21,6 +25,7 @@ namespace Sokool.Net.Web.Controllers
 		[Route("Error/{statusCode}")]
 		public IActionResult HttpStatusCodeHandler(int statusCode)
 		{
+			Title = "HTTP Error";
 			var statusCodeResult = HttpContext.Features.Get<IStatusCodeReExecuteFeature>();
 			ViewBag.Path = statusCodeResult.OriginalPath;
 			ViewBag.QS = statusCodeResult.OriginalQueryString;
@@ -35,6 +40,7 @@ namespace Sokool.Net.Web.Controllers
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 		public IActionResult Error()
 		{
+			Title = "Error";
 			var exceptionDetails = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
 			
 			//ViewBag.ExceptionPath = exceptionDetails.Path;

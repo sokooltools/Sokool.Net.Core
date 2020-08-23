@@ -21,8 +21,7 @@ namespace Sokool.Net.Web.Controllers
 		private readonly SignInManager<AppUser> _signInManager;
 
 		public AccountController(
-			ILogger<AccountController> logger, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager
-			)
+			ILogger<AccountController> logger, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
 		{
 			_logger = logger;
 			_userManager = userManager;
@@ -53,16 +52,13 @@ namespace Sokool.Net.Web.Controllers
 		{
 			if (!ModelState.IsValid) 
 				return View(model);
-
 			var user = new AppUser { 
 				UserName = model.Email, 
 				Email = model.Email,
 				FirstName = model.FirstName,
 				LastName = model.LastName
 			};
-
 			IdentityResult result = await _userManager.CreateAsync(user, model.Password);
-
 			if (result.Succeeded)
 			{
 				// If the user is signed in and in the Admin role, then it is
@@ -72,7 +68,6 @@ namespace Sokool.Net.Web.Controllers
 				{
 					return RedirectToAction("ListUsers", "Administration");
 				}
-
 				await _signInManager.SignInAsync(user, isPersistent: false);
 				return RedirectToAction("Index", "Home");
 			}

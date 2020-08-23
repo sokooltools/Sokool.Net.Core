@@ -1,7 +1,7 @@
 ﻿@model CreateRoleViewModel
 
 <div class="container text-nowrap">
-	<h4 class="display-4">Create new Role</h4>
+	<h1>Create Role</h1>
 	<hr />
 	<form method="post" asp-controller="Administration" asp-action="CreateRole">
 
@@ -18,17 +18,13 @@
 		<div class="form-group">
 			<div class="col-md-12">
 				<input type="submit" value="Create Role" class="btn btn-primary" />
+				<a asp-controller="Administration" asp-action="ListRoles" class="btn btn-primary">Cancel</a>
 			</div>
 		</div>
 	</form>
 </div>
 
-<div class="btn-link">
-	@Html.ActionLink("Back to Home", "Index", "Home")
-</div>
-
 @section Scripts {
-
 	<environment include="Development">
 		<script type="text/javascript" src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
 		<script type="text/javascript" src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>

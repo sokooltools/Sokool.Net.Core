@@ -1,11 +1,7 @@
-﻿@{
-	ViewBag.Title = "HTTP Error";
-}
-
-<h2 class="text-danger">@ViewBag.StatusCode (@ViewBag.ErrorType)</h2>
+﻿<h2 class="text-danger">@ViewBag.StatusCode (@ViewBag.ErrorType)</h2>
 
 <h3 class="text-info">@ViewBag.ErrorMessage</h3>
 
 <p><code>@ViewBag.Path@ViewBag.QS</code></p>
 
-<a asp-action="index" asp-controller="home">Click here to navigate to the home page</a>
+<a asp-controller="home" asp-action="index">Click here to navigate to the home page</a>

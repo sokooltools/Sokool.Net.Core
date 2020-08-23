@@ -1,10 +1,8 @@
 using System.IO;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -56,6 +54,37 @@ namespace Sokool.Net.Web
 			//		options.Filters.Add(new AuthorizeFilter(policy));
 			//	}
 			//);
+
+			// Redirects all access denied to the Adminstration controller
+			//services.ConfigureApplicationCookie(options =>
+			//{
+			//	options.AccessDeniedPath = new PathString("/Administration/AccessDenied");
+			//});
+
+
+			services.AddAuthorization(options =>
+			{
+				options.AddPolicy("CreateUserPolicy", policy => policy
+					.RequireClaim("CreateUser"));
+				options.AddPolicy("EditUserPolicy", policy => policy
+					.RequireClaim("EditUser"));
+				options.AddPolicy("DeleteUserPolicy", policy => policy
+					.RequireClaim("DeleteUser"));
+				options.AddPolicy("ManageUserRolesPolicy", policy => policy
+					.RequireClaim("ManageUserRoles"));
+				options.AddPolicy("ManageUserClaimsPolicy", policy => policy
+					.RequireClaim("ManageUserClaims"));
+				options.AddPolicy("EditUsersInRolePolicy", policy => policy
+					.RequireClaim("EditUsersInRole"));
+
+
+				options.AddPolicy("CreateRolePolicy", policy => policy
+					.RequireClaim("CreateRole"));
+				options.AddPolicy("EditRolePolicy", policy => policy
+					.RequireClaim("EditRole"));
+				options.AddPolicy("DeleteRolePolicy", policy => policy
+					.RequireClaim("DeleteRole"));
+			});
 
 			services.AddControllersWithViews();
 #if DEBUG
