@@ -13,7 +13,7 @@ using Sokool.Net.Web.Models;
 
 namespace Sokool.Net.Web.Controllers
 {
-	[Authorize(Roles = "Admin")]
+	[Authorize(Roles = "SuperUser, Admin")]
 	public class AdministrationController : Controller
 	{
 		[ViewData]
@@ -64,7 +64,7 @@ namespace Sokool.Net.Web.Controllers
 				UserName = user.UserName,
 				FirstName = user.FirstName,
 				LastName = user.LastName,
-				Claims = userClaims.Select(c => c.Value).ToList(),
+				Claims = userClaims.Select(c => c.Type + " : " + c.Value).ToList(),
 				Roles = userRoles
 			};
 			return View(model);
@@ -300,7 +300,7 @@ namespace Sokool.Net.Web.Controllers
 			}
 			catch (DbUpdateException ex)
 			{
-				//Log the exception to a file. We discussed logging to a file using Nlog in Part 63 of ASP.NET Core tutorial
+				// Log the exception to a file.
 				_logger.LogError($"Exception occured : {ex}");
 				// Pass the ErrorTitle and ErrorMessage that you want to show to the user using ViewBag. The Error view retrieves this data
 				// from the ViewBag and displays to the user.
@@ -366,6 +366,7 @@ namespace Sokool.Net.Web.Controllers
 		[Authorize(Policy = "ManageUserClaimsPolicy")]
 		public async Task<IActionResult> ManageUserClaims(string userId)
 		{
+			Title = "Manage User Claims";
 			AppUser user = await _userManager.FindByIdAsync(userId);
 			if (user == null)
 			{
@@ -387,7 +388,7 @@ namespace Sokool.Net.Web.Controllers
 				};
 				// If the user has the claim, set IsSelected property to true, so the checkbox
 				// next to the claim is checked on the UI
-				if (existingUserClaims.Any(c => c.Type == claim.Type))
+				if (existingUserClaims.Any(c => c.Type == claim.Type && c.Value == "true"))
 				{
 					userClaim.IsSelected = true;
 				}
@@ -416,7 +417,7 @@ namespace Sokool.Net.Web.Controllers
 			}
 			// Add all the claims that are selected on the UI
 			result = await _userManager.AddClaimsAsync(user,
-				model.Claims.Where(c => c.IsSelected).Select(c => new Claim(c.ClaimType, c.ClaimType)));
+				model.Claims.Select(c => new Claim(c.ClaimType, c.IsSelected ? "true" : "false")));
 			if (result.Succeeded)
 				return RedirectToAction("EditUser", new { Id = model.UserId });
 

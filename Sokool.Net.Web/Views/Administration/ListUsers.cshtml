@@ -10,7 +10,7 @@
 		Add new user
 	</a>
 
-	foreach (AppUser user in Model)
+	foreach (AppUser user in Model.OrderBy(m=>m.UserName))
 	{
 		<div class="card mb-3">
 			<div class="card-header">

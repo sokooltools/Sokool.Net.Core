@@ -1,4 +1,6 @@
+using System;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -32,19 +34,33 @@ namespace Sokool.Net.Web
 			services.AddDbContextPool<AppIdentityDbContext>(
 				options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"],
 					b => b.MigrationsAssembly("Sokool.Net.DataLibrary")));
-			
+
 			services.AddIdentity<AppUser, IdentityRole>(options =>
 			{
-				options.Password.RequiredLength = 8; 
+				options.Password.RequiredLength = 8;
 				options.Password.RequiredUniqueChars = 3;
-			}).AddEntityFrameworkStores<AppIdentityDbContext>().AddDefaultTokenProviders();
+				//options.SignIn.RequireConfirmedEmail = true;
+				options.Lockout.MaxFailedAccessAttempts = 5;
+				options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
+			}).AddEntityFrameworkStores<AppIdentityDbContext>()
+				.AddDefaultTokenProviders();
 
+			// The following can be used in lieu of the preceding.
 			//services.Configure<IdentityOptions>(options =>
 			//{
-			//	options.Password.RequiredLength = 8; 
+			//	options.Password.RequiredLength = 8;
 			//	options.Password.RequiredUniqueChars = 3;
+			//	options.SignIn.RequireConfirmedEmail = true;
 			//});
-			
+
+			// Set (email, reset password) token life span to 5 hours
+			services.Configure<DataProtectionTokenProviderOptions>(o =>
+				o.TokenLifespan = TimeSpan.FromHours(5));
+
+			//// Changes token lifespan of just the Email Confirmation Token type
+			//services.Configure<CustomEmailConfirmationTokenProviderOptions>(o =>
+			//	o.TokenLifespan = TimeSpan.FromDays(3));
+
 			// The following causes the Login page to appear before any other actions can be performed
 			//services.AddMvc(options =>
 			//	{
@@ -61,29 +77,35 @@ namespace Sokool.Net.Web
 			//	options.AccessDeniedPath = new PathString("/Administration/AccessDenied");
 			//});
 
-
+			// Perform Authorization
 			services.AddAuthorization(options =>
 			{
 				options.AddPolicy("CreateUserPolicy", policy => policy
-					.RequireClaim("CreateUser"));
+					.RequireAssertion(context => AuthorizeAccess(context, "CreateUser")));
+				
 				options.AddPolicy("EditUserPolicy", policy => policy
-					.RequireClaim("EditUser"));
+					.RequireAssertion(context => AuthorizeAccess(context, "EditUser")));
+				
 				options.AddPolicy("DeleteUserPolicy", policy => policy
-					.RequireClaim("DeleteUser"));
+					.RequireAssertion(context => AuthorizeAccess(context, "DeleteUser")));
+				
 				options.AddPolicy("ManageUserRolesPolicy", policy => policy
-					.RequireClaim("ManageUserRoles"));
+					.RequireAssertion(context => AuthorizeAccess(context, "ManageUserRoles")));
+				
 				options.AddPolicy("ManageUserClaimsPolicy", policy => policy
-					.RequireClaim("ManageUserClaims"));
+					.RequireAssertion(context => AuthorizeAccess(context, "ManageUserClaims")));
+				
 				options.AddPolicy("EditUsersInRolePolicy", policy => policy
-					.RequireClaim("EditUsersInRole"));
-
-
+					.RequireAssertion(context => AuthorizeAccess(context, "EditUsersInRole")));
+				
 				options.AddPolicy("CreateRolePolicy", policy => policy
-					.RequireClaim("CreateRole"));
+					.RequireAssertion(context => AuthorizeAccess(context, "CreateRole")));
+
 				options.AddPolicy("EditRolePolicy", policy => policy
-					.RequireClaim("EditRole"));
+					.RequireAssertion(context => AuthorizeAccess(context, "EditRole")));
+
 				options.AddPolicy("DeleteRolePolicy", policy => policy
-					.RequireClaim("DeleteRole"));
+					.RequireAssertion(context => AuthorizeAccess(context, "DeleteRole")));
 			});
 
 			services.AddControllersWithViews();
@@ -113,7 +135,7 @@ namespace Sokool.Net.Web
 			}
 
 			//app.UseHttpsRedirection();
-			
+
 			//// The next four lines are for testing middleware pipeline. (They must come before UseStaticFiles!)
 			//var fileServerOptions = new FileServerOptions();
 			//fileServerOptions.DefaultFilesOptions.DefaultFileNames.Clear();
@@ -164,6 +186,13 @@ namespace Sokool.Net.Web
 				// This is a shortened version of preceding code.
 				endpoints.MapDefaultControllerRoute();
 			});
+		}
+
+		private static bool AuthorizeAccess(AuthorizationHandlerContext context, string claimType)
+		{
+			return context.User.IsInRole("Admin") &&
+				   context.User.HasClaim(claim => claim.Type == claimType && claim.Value == "true") ||
+				   context.User.IsInRole("SuperUser");
 		}
 	}
 }

@@ -14,28 +14,21 @@ installing this nuget package : Microsoft.EntityFrameworkCore.SqlServer  will in
 		https://fontawesome.com/cheatsheet/free/solid
         https://fontawesome.com/account/cdn
 
-Data Source=(localdb)\MSSQLLocalDB;Integrated Security=True;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;
 ------------------------------------------------------------------------------------------------------------------------
 Add taghelpers by entering into the _ViewImports.cshtml
 
 @addTagHelper *, Sokool.Net.Web
 
 ---------------------------------------------------------------------------------------------------------------------------
+ENTITY FRAMEWORK
+---------------------------------------------------------------------------------------------------------------------------
 
 PM> get-help entityframework
 
-TOPIC
-    about_EntityFrameworkCore
-
-SHORT DESCRIPTION
-    Provides information about the Entity Framework Core Package Manager Console Tools.
-
-LONG DESCRIPTION
     This topic describes the Entity Framework Core Package Manager Console Tools. See https://docs.efproject.net for
     information on Entity Framework Core.
 
     The following Entity Framework Core commands are available.
-
         Cmdlet                      Description
         --------------------------  ---------------------------------------------------
         Add-Migration               Adds a new migration.
@@ -46,15 +39,6 @@ LONG DESCRIPTION
         Script-DbContext            Generates a SQL script from the current DbContext. 
         Script-Migration            Generates a SQL script from migrations.
         Update-Database             Updates the database to a specified migration.
-SEE ALSO
-    Add-Migration
-    Drop-Database
-    Get-DbContext
-    Remove-Migration
-    Scaffold-DbContext
-    Script-DbContext
-    Script-Migration
-    Update-Database
 
 ------------------------------------------------------------------------------------------------------------------------
 
@@ -102,5 +86,35 @@ ASPNETCORE_ENVIRONMENT   Development
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
+    }
+  }
+
+
+Data Source=(localdb)\MSSQLLocalDB;Integrated Security=True;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;
+
+------------------------------------------------------------------------------------------------------------------------
+  ENVIRONMENT VARIABLE  CONNECTION STRING
+------------------------------------------------------------------------------------------------------------------------
+  KEY                                  | VALUE
+  ConnectionStrings__DefaultConnection | Server=(localdb)\\MSSQLLocalDB;Database=IdentityDB;Trusted_Connection=True;MultipleActiveResultSets=true
+
+
+
+<script language='javascript' type='text/javascript'>
+    $(document).ready(function () {
+        var firstInput = $('form').find('*').filter(':input:visible:enabled:not([readonly]):first');
+        if (firstInput != null) {
+            firstInput.focus();
+        }
+    });
+</script>
+
+
+
+    "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
     }
   }

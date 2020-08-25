@@ -1,4 +1,4 @@
-﻿namespace Sokool.Net.Web.Controllers
+﻿namespace Sokool.Net.Web.Utilities
 {
 	public static class ExceptionHandler
 	{

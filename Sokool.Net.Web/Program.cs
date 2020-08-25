@@ -1,7 +1,9 @@
+using System;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Console;
+using NLog;
+using NLog.Web;
 
 namespace Sokool.Net.Web
 {
@@ -9,7 +11,23 @@ namespace Sokool.Net.Web
 	{
 		public static void Main(string[] args)
 		{
-			CreateHostBuilder(args).Build().Run();
+			Logger logger = NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
+			try
+			{
+				logger.Debug("init main");
+				CreateHostBuilder(args).Build().Run();
+			}
+			catch (Exception ex)
+			{
+				//NLog: catch setup errors
+				logger.Error(ex, "Stopped program because of exception");
+				throw;
+			}
+			finally
+			{
+				// Ensure to flush and stop internal timers/threads before application-exit (Avoid segmentation fault on Linux)
+				NLog.LogManager.Shutdown();
+			}
 		}
 
 		// ReSharper disable once MemberCanBePrivate.Global
@@ -18,7 +36,13 @@ namespace Sokool.Net.Web
 				.ConfigureWebHostDefaults(webBuilder =>
 				{
 					webBuilder.UseStartup<Startup>();
-				});
+				})
+				.ConfigureLogging(logging =>
+				{
+					logging.ClearProviders();
+					logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
+				})
+				.UseNLog();  // NLog: Setup NLog for Dependency injection
 
 		//.ConfigureLogging(loggingBuilder =>
 		//	loggingBuilder.AddFilter<ConsoleLoggerProvider>(level => level == LogLevel.Information));

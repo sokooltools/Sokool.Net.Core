@@ -5,6 +5,11 @@ $(document).ready(function () {
         sessionStorage.setItem("navtab", $(e.target).attr("id"));
     });
 
+    const firstInput = $("form").find("input[type=text],select").filter(':input:visible:enabled:not([readonly]):first');
+    if (firstInput != null) {
+        firstInput.focus();
+    }
+
     (function () {
         var current = getInitPath(window.location.pathname.toLowerCase());
         $(".navbar-nav a").each(function () {

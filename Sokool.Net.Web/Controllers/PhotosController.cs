@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -8,6 +9,7 @@ using Sokool.Net.Web.Models;
 
 namespace Sokool.Net.Web.Controllers
 {
+	[Authorize]
 	public class PhotosController : Controller
 	{
 		[ViewData]

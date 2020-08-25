@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>5e7bbc27-8fd4-4470-a791-c6fae6eb0a84</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -24,6 +25,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.9.3" />
     <PackageReference Include="Rick.Docs.Samples.RouteInfo" Version="1.0.0.4" />
   </ItemGroup>
 

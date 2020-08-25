@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
-using Sokool.Net.Web.Utilities;
 
 namespace Sokool.Net.Web.Models
 {
