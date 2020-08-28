@@ -5,7 +5,7 @@ $(document).ready(function () {
         sessionStorage.setItem("navtab", $(e.target).attr("id"));
     });
 
-    const firstInput = $("form").find("input[type=text],select").filter(':input:visible:enabled:not([readonly]):first');
+    const firstInput = $("form").find("input[type=text],input[type=email],input[type=password],select").filter(':input:visible:enabled:not([readonly]):first');
     if (firstInput != null) {
         firstInput.focus();
     }

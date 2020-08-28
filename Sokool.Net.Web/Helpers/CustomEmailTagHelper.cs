@@ -3,6 +3,12 @@
 // Make sure to add the following to the _ViewImports.cshtml
 //	@addTagHelper *, Sokool.Net.Web
 
+//
+// This will change the following:
+//		<custom-email my-email="support@sokool.net"></custom-email>
+// into this:
+//		<a href="mailto:support@sokool.net" id="my-email-id" name="my-email-name">support@sokool.net</a>
+//
 namespace Sokool.Net.Web.Helpers
 {
 	public class CustomEmailTagHelper : TagHelper

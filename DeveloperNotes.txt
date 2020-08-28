@@ -59,8 +59,6 @@ PM>
 
 ASPNETCORE_ENVIRONMENT   Development
 
-
-
 ------------------------------------------------------------------------------------------------------------------------
 ,
   "iisSettings": {
@@ -88,6 +86,13 @@ ASPNETCORE_ENVIRONMENT   Development
       }
     }
   }
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  }
 
 
 Data Source=(localdb)\MSSQLLocalDB;Integrated Security=True;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;
@@ -100,21 +105,9 @@ Data Source=(localdb)\MSSQLLocalDB;Integrated Security=True;Connect Timeout=60;E
 
 
 
-<script language='javascript' type='text/javascript'>
-    $(document).ready(function () {
-        var firstInput = $('form').find('*').filter(':input:visible:enabled:not([readonly]):first');
-        if (firstInput != null) {
-            firstInput.focus();
-        }
-    });
-</script>
+------------------------------------------------------------------------------------------------------------------------
+EMAIL  (MAILKIT)
+------------------------------------------------------------------------------------------------------------------------
 
 
-
-    "Logging": {
-    "LogLevel": {
-      "Default": "Information",
-      "Microsoft": "Warning",
-      "Microsoft.Hosting.Lifetime": "Information"
-    }
-  }
+  http://www.binaryintellect.net/articles/e30d07c6-6f57-43e7-a2ce-6d2d67ebf403.aspx

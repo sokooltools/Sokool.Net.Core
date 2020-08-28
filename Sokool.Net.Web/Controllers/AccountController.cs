@@ -66,6 +66,7 @@ namespace Sokool.Net.Web.Controllers
 				// This next section used for email confirmation
 				string token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
 				string confirmationLink = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, token = token }, Request.Scheme);
+				
 				_logger.Log(LogLevel.Warning, confirmationLink);
 
 				// If the user is signed in and in the Admin role, then it is the Admin user 
@@ -74,6 +75,8 @@ namespace Sokool.Net.Web.Controllers
 				{
 					return RedirectToAction("ListUsers", "Administration");
 				}
+
+				// TODO: send email containing confirmationLink
 
 				//await _signInManager.SignInAsync(user, isPersistent: false);
 				//return RedirectToAction("Index", "Home");
@@ -206,6 +209,8 @@ namespace Sokool.Net.Web.Controllers
 
 			// Log the password reset link
 			_logger.Log(LogLevel.Warning, passwordResetLink);
+
+			// TODO: Send passwordResetLink via email
 
 			// Send the user to Forgot Password Confirmation view.
 			return View("ForgotPasswordConfirmation");
