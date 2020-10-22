@@ -41,15 +41,38 @@ namespace Sokool.Net.Web.Models
 		/// <summary>
 		/// Sorts the data in this collection in ascending order by default.
 		/// </summary>
-		/// <param name="isDescendingOrder">
-		/// if set to <c>true</c> returns the data in descending order; otherwise returns the data sorted in ascending order by 
-		/// default.
+		/// <param name="orderbyString">
+		/// A string containing the property of the video to order by [default is "Name"] and the direction [default is 
+		/// ascending].
 		/// </param>
 		/// <returns></returns>
 		//------------------------------------------------------------------------------------------------------------------------
-		public IOrderedEnumerable<Video> Sort(bool isDescendingOrder = false)
+		public IEnumerable<Video> Sort(string orderbyString)
 		{
-			return isDescendingOrder ? this.ToList().OrderByDescending(m => m.Name) : this.ToList().OrderBy(m => m.Name);
+			//object OrderByFunc(Video m) => m.GetType().GetProperty(orderbyProperty)?.GetValue(m);
+
+			string videoProperty = "name";
+			bool isDescendingOrder = false;
+			if (!String.IsNullOrEmpty(orderbyString))
+			{
+				string[] o = orderbyString.Split(" ", StringSplitOptions.RemoveEmptyEntries);
+				if (o.Any())
+				{
+					videoProperty = o[0].ToLower();
+					if (o.Length > 1)
+					{
+						isDescendingOrder = o[1].ToLower().StartsWith("desc");
+					}
+				}
+			}
+
+			Func<Video, object> orderbyFunc;
+			if (videoProperty == "length")
+				orderbyFunc = m => m.Length;
+			else
+				orderbyFunc = m => m.Name;
+
+			return isDescendingOrder ? this.ToList().OrderByDescending(orderbyFunc) : this.ToList().OrderBy(orderbyFunc);
 		}
 	}
 }

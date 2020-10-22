@@ -8,7 +8,7 @@ using Sokool.Net.Web.Models;
 
 namespace Sokool.Net.Web.Controllers
 {
-	[Authorize]
+	[Authorize(Roles = "SuperUser, Admin")]
 	public class SamplesController : Controller
 	{
 		[ViewData]

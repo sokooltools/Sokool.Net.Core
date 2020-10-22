@@ -122,17 +122,17 @@ namespace Sokool.Net.Web
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 #pragma warning restore CA1822 // Mark members as static
 		{
-			if (env.IsDevelopment())
-			{
-				var developerExceptionPageOptions = new DeveloperExceptionPageOptions { SourceCodeLineCount = 10 };
-				app.UseDeveloperExceptionPage(developerExceptionPageOptions);
-			}
-			else  // See https://docs.microsoft.com/en-us/aspnet/core/fundamentals/error-handling?view=aspnetcore-3.1
-			{
-				app.UseExceptionHandler("/Error");
-				//app.UseHsts();
-				app.UseStatusCodePagesWithReExecute("/Error/{0}");
-			}
+			//if (env.IsDevelopment())
+			//{
+			//	var developerExceptionPageOptions = new DeveloperExceptionPageOptions { SourceCodeLineCount = 10 };
+			//	app.UseDeveloperExceptionPage(developerExceptionPageOptions);
+			//}
+			//else  // See https://docs.microsoft.com/en-us/aspnet/core/fundamentals/error-handling?view=aspnetcore-3.1
+			//{
+			app.UseExceptionHandler("/Error");
+			//app.UseHsts();
+			app.UseStatusCodePagesWithReExecute("/Error/{0}");
+			//}
 
 			//app.UseHttpsRedirection();
 

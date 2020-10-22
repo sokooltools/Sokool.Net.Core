@@ -37,10 +37,10 @@ namespace Sokool.Net.Web
 				{
 					webBuilder.UseStartup<Startup>();
 				})
-				.ConfigureLogging(logging =>
+				.ConfigureLogging(loggingBuilder =>
 				{
-					logging.ClearProviders();
-					logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
+					loggingBuilder.ClearProviders();
+					loggingBuilder.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Information);
 				})
 				.UseNLog();  // NLog: Setup NLog for Dependency injection
 
