@@ -12,9 +12,9 @@ namespace Sokool.Net.Web.Models
 		/// A list of Sample objects is created from all sample files in the specified virtual folder having the specified
 		/// extension.
 		/// </summary>
-		/// <param name="virtualFolder">The virtual folder.</param>
-		/// <param name="physicalPath">The physical path.</param>
-		/// <param name="extension">The extension. [All files in the virtual folder are returned by default]</param>
+		/// <param name="virtualFolder">The virtual folder containing the samples.</param>
+		/// <param name="physicalPath">The physical path to the sample files.</param>
+		/// <param name="extension">The extension. [Default is all files in the virtual folder]</param>
 		//------------------------------------------------------------------------------------------------------------------------
 		public SamplesViewModel(string virtualFolder, string physicalPath, string extension = ".*")
 		{

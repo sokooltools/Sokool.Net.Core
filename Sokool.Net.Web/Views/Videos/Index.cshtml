@@ -12,8 +12,12 @@
 	<table class="table mt-1">
 		<thead>
 			<tr>
-				<th>Name</th>
-				<th class="text-right">Length</th>
+				<th>
+					<a id="link1" class="video-link" href='@Url.Action("Index", "Videos", new {sortColumn = "name"})'>Name<i class=""></i></a>
+				</th>
+				<th class="text-right">
+					<a id="link2" class="video-link" href='@Url.Action("Index", "Videos", new {sortColumn = "length"})'>Length<i class=""></i></a>
+				</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -21,7 +25,7 @@
 			{
 				<tr>
 					<td class="video-name">
-						<a class="video-link" href='@Url.Action("Show", "Videos", new {vf = video.VirtualFolder, fn = video.FileName})'><i class="fa fa-fw fa-video pr-1"></i>@video.FileName</a>
+						<a class="video-link" href='@Url.Action("Show", "Videos", new {vf = video.VirtualFolder, fn = video.FileName})'><i class="fa fa-fw fa-video mr-1 gray"></i>@video.FileName</a>
 					</td>
 					<td class="video-length">
 						@($"{video.Length / 1024:###,### KB}")

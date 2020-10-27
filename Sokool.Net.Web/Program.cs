@@ -40,7 +40,7 @@ namespace Sokool.Net.Web
 				.ConfigureLogging(loggingBuilder =>
 				{
 					loggingBuilder.ClearProviders();
-					loggingBuilder.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Information);
+					loggingBuilder.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Warning);
 				})
 				.UseNLog();  // NLog: Setup NLog for Dependency injection
 
