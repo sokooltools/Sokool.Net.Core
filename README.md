@@ -1,2 +1,2 @@
-# Sokool.Net
-Sokool.Net Website
+# Sokool.Net.Mvc.Core
+Sokool.Net Website (ASP.NET MVC Core)
