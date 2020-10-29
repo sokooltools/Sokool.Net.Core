@@ -9,6 +9,6 @@ The data displayed in both the <b>Photos1</b> view and <b>Photos2</b> view,	as w
 
 The <b>Photos2</b> view provides a user friendly interface using a Bootstrap photo carousel/slide show.
 
-The specific Video view utilizes a jQuery-UI <i>draggable</i>, <i>non-modal</i> dialog to display the corresponding lyrics since this is not otherwise possible using BootStrap.
+The specific <b>Videos</b> view utilizes a jQuery-UI <i>draggable</i>, <i>non-modal</i> dialog to display the corresponding lyrics since this is not otherwise possible using BootStrap.
 
-It also uses a separate BootStrap Tab for categorizing the videos. Some javascript had to be created to correctly activate the current nav tab and the video tab corresponding to the current MVC View.
+It also uses a separate BootStrap Tab control for categorizing the videos. Some javascript code was added to correctly activate the current nav tab and the tab corresponding to the current MVC View.
