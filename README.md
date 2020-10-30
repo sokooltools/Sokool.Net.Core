@@ -15,16 +15,16 @@ It also uses a separate BootStrap Tab control for categorizing the videos. Some 
 
 <hr>
 
-![Image0](Images/image0.png "Console Window")
+![Image0](Images/Image0.png "Console Window")
 
 <hr>
 
-![Image1](Images/image1.png "Home/Index View")
+![Image1](Images/Image1.png "Home/Index View")
 
 <hr>
 
-![Image2](Images/image2.png "Home/About View")
+![Image2](Images/Image2.png "Home/About View")
 
 <hr>
 
-![Image3](Images/image3.png "Home/Contact View")
+![Image3](Images/Image3.png "Home/Contact View")
