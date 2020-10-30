@@ -12,3 +12,19 @@ The <b>Photos2</b> view provides a user friendly interface using a Bootstrap pho
 The specific <b>Videos</b> view utilizes a jQuery-UI <i>draggable</i>, <i>non-modal</i> dialog to display the corresponding lyrics since this is not otherwise possible using BootStrap.
 
 It also uses a separate BootStrap Tab control for categorizing the videos. Some javascript code was added to correctly activate the current nav tab and the tab corresponding to the current MVC View.
+
+<hr>
+
+![Image0](Images/image0.png "Console Window")
+
+<hr>
+
+![Image1](Images/image1.png "Home/Index View")
+
+<hr>
+
+![Image2](Images/image2.png "Home/About View")
+
+<hr>
+
+![Image3](Images/image3.png "Home/Contact View")
