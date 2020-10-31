@@ -1,4 +1,4 @@
-<link href="style.css" rel="stylesheet"></link>
+<link href="markdown.css" rel="stylesheet"/>
 
 # Sokool.Net.Mvc.Core
 Sokool.Net Website (ASP.NET MVC Core)
