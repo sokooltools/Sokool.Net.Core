@@ -3,6 +3,6 @@
     border-color: lightgrey;
     background-color: #fff;
     box-sizing: content-box;
-    max-width: 50%;
+    max-width: 50% !important;
     border-width: thin;
 }
