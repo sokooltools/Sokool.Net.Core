@@ -19,19 +19,19 @@ It also uses a separate BootStrap Tab control for categorizing the videos. Some 
 
 This is the "<b>Microsoft Visual Studio Debug Console</b>" window opened by Kestrel when debugging:
 
-![Image0](Images/Image0.png "Console Window")
+![Image0](Images/Image0.png "Console Window"){:height="" width="50%"}
 
 <hr>
 
 This is the "<b>Index</b>" (Home) page:
 
-![Image1](Images/Image1.png "Home/Index view")
+![Image1](Images/Image1.png "Home/Index view"){:height="" width="50%"}
 
 <hr>
 
 This is the "<b>About</b>" page:
 
-![Image2](Images/Image2.png "Home/About view")
+![Image2](Images/Image2.png "Home/About view"){:height="" width="50%"}
 
 <hr>
 
