@@ -1,6 +1,0 @@
-# Ignore everything in this directory
-*
-# Except this file
-!.gitignore
-!Ajax.mp4
-!Ajax.png
