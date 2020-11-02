@@ -7,7 +7,7 @@ using NLog.Web;
 
 namespace Sokool.Net.Web
 {
-	public class Program
+	public static class Program
 	{
 		public static void Main(string[] args)
 		{
@@ -40,7 +40,7 @@ namespace Sokool.Net.Web
 				.ConfigureLogging(loggingBuilder =>
 				{
 					loggingBuilder.ClearProviders();
-					loggingBuilder.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Warning);
+					loggingBuilder.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Information);
 				})
 				.UseNLog();  // NLog: Setup NLog for Dependency injection
 

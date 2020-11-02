@@ -95,6 +95,42 @@ The "<b>Error 400</b>" page:
 
 <hr/>
 
+The "<b>Error 401</b>" page:
+
+![Image12a](Images/Image12a.png "~/Views/Shared/Error")
+
+<hr/>
+
+The "<b>Error 403</b>" page:
+
+![Image12b](Images/Image12b.png "~/Views/Shared/Error")
+
+<hr/>
+
+The "<b>Error 404</b>" page:
+
+![Image12c](Images/Image12c.png "~/Views/Shared/Error")
+
+<hr/>
+
+The "<b>Error 405</b>" page:
+
+![Image12e](Images/Image12e.png "~/Views/Shared/Error")
+
+<hr/>
+
+The "<b>Error 406</b>" page:
+
+![Image12d](Images/Image12d.png "~/Views/Shared/Error")
+
+<hr/>
+
+The "<b>Error 408</b>" page:
+
+![Image12f](Images/Image12f.png "~/Views/Shared/Error")
+
+<hr/>
+
 The "<b>Error 503</b>" page:
 
 ![Image13](Images/Image13.png "~/Views/Shared/Error")

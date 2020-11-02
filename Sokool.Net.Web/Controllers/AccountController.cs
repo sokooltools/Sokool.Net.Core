@@ -65,7 +65,7 @@ namespace Sokool.Net.Web.Controllers
 			{
 				// This next section used for email confirmation
 				string token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-				string confirmationLink = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, token = token }, Request.Scheme);
+				string confirmationLink = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, token }, Request.Scheme);
 				
 				_logger.Log(LogLevel.Warning, confirmationLink);
 
@@ -205,7 +205,7 @@ namespace Sokool.Net.Web.Controllers
 
 			// Build the password reset link
 			string passwordResetLink = Url.Action("ResetPassword", "Account",
-				new { email = model.Email, token = token }, Request.Scheme);
+				new { email = model.Email, token }, Request.Scheme);
 
 			// Log the password reset link
 			_logger.Log(LogLevel.Warning, passwordResetLink);
