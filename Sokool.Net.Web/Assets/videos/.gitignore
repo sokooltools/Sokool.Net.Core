@@ -1,0 +1,11 @@
+# Ignore everything in this directory
+*
+# Except this file
+!.gitignore
+!across/
+!cartoon/
+!comm/
+!movies/
+!music1/
+!phantom/
+!tv/

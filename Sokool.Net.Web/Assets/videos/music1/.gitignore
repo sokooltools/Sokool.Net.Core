@@ -1,0 +1,6 @@
+# Ignore everything in this directory
+*
+# Except this file
+!.gitignore
+!Cowsills - The Rain the Park and Other Things.mp4
+!Cowsills - The Rain the Park and Other Things.txt
