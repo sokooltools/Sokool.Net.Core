@@ -47,25 +47,25 @@ The "<b>User Login</b>" page:
 
 <hr/>
 
-The "<b>Photos1</b> (<i><b>Default</b> tab selected</i>)" page:
+The "<b>Photos1</b> (<i>with <b>Default</b> tab selected</i>)" page:
 
 ![Image5](Images/Image5.png "~/Views/Photos/Photos1")
 
 <hr/>
 
-The "<b>Photos1</b> (<i>selected photo</i>)" page:
+The "<b>Photos1</b> (<i>with selected photo super-imposed</i>)" page:
 
 ![Image6](Images/Image6.png "~/Views/Photos/Photos1 view (Default tab selected)")
 
 <hr/>
 
-The "<b>Photos2</b> (<i><b>Default</b> tab selected</i>)" page:
+The "<b>Photos2</b> (<i>with <b>Default</b> tab selected</i>)" page:
 
 ![Image7](Images/Image7.png "~/Views/Assets/Photos/Default")
 
 <hr/>
 
-The "<b>Photos2</b>" (<i>shown as a carousel item</i>) page:
+The "<b>Photos2</b>" (<i>with items shown in a carousel</i>) page:
 
 ![Image8](Images/Image8.png "Assets/Photos/Default/Image1.jpg")
 
@@ -113,7 +113,7 @@ The "<b>Play</b> selected video" page:
 
 <hr/>
 
-The "<b>Play</b> selected video (<i>w/lyrics</i>)" page:
+The "<b>Play</b> selected video (<i>with lyrics dialog shown</i>)" page:
 
 ![Image16](Images/Image16.png "~/Views/Videos/Show")
 
@@ -131,7 +131,7 @@ The "<b>User Registration</b>" page:
 
 <hr/>
 
-The "<b>All Users</b> (<i>Delete</i>)" page:
+The "<b>All Users</b> (<i>with embeded delete confirmation</i>)" page:
 
 ![Image17b](Images/Image17b.png "~/Views/Administration/ListUsers")
 
@@ -173,7 +173,7 @@ The "<b>Create Role</b>" page:
 
 <hr/>
 
-The "<b>List Roles</b> (<i>Delete</i>)" page:
+The "<b>List Roles</b> (<i>with embedded delete confirmation</i>)" page:
 
 ![Image24](Images/Image24.png "~/Views/Administration/ListRoles")
 
