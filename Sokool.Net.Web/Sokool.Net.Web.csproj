@@ -6,7 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Assets\" />
+    <Folder Include="Assets\videos\comm\" />
+    <Folder Include="Assets\videos\movies\" />
     <Folder Include="wwwroot\lib\jquery-ui\" />
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
