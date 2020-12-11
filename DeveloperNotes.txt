@@ -1,4 +1,5 @@
-1) Add this package to Sokool.Net.Web  : Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation
+------------------------------------------------------------------------------------------------------------------------
+1) Add the following package to Sokool.Net.Web  : Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation
 
 2)  Add the line below to the Startup file.
 
@@ -111,3 +112,16 @@ EMAIL  (MAILKIT)
 
 
   http://www.binaryintellect.net/articles/e30d07c6-6f57-43e7-a2ce-6d2d67ebf403.aspx
+
+------------------------------------------------------------------------------------------------------------------------
+
+You get a lot of language folders containing CodeAnalysis.dll files in your published output if you have a project 
+reference to Microsoft.VisualStudio.Web.CodeGeneration.Design, which is needed for scaffolding controllers. If that is 
+true for your project, change the package reference in your .csproj file to include ExcludeAssets="all":
+
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" ExcludeAssets="All" />
+
+Also add the following to a PropertyGroup tag:
+    <PropertyGroup>
+        <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+    </PropertyGroup>
