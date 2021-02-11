@@ -10,13 +10,13 @@
 ----->		services.AddRazorPages().AddRazorRuntimeCompilation();
 
 
-installing this nuget package : Microsoft.EntityFrameworkCore.SqlServer  will install all dependent entity framework packages 
+// Make sure all dependent entity framework packages are installed using nuget : Microsoft.EntityFrameworkCore.SqlServer   
 		
 		https://fontawesome.com/cheatsheet/free/solid
         https://fontawesome.com/account/cdn
 
 ------------------------------------------------------------------------------------------------------------------------
-Add taghelpers by entering into the _ViewImports.cshtml
+// Add taghelpers by entering into the _ViewImports.cshtml
 
 @addTagHelper *, Sokool.Net.Web
 
@@ -42,17 +42,26 @@ PM> get-help entityframework
         Update-Database             Updates the database to a specified migration.
 
 ------------------------------------------------------------------------------------------------------------------------
+// The following EF Migration command should only performed once (i.e., not when recreating the database on another PC)
 
 PM> Add-Migration Init
 Build started...
 Build succeeded.
 To undo this action, use Remove-Migration.
 PM> 
+
+// The following EF Migration command needs to be executed to create a new database on this PC or whenever a new 
+// migration activity is created.
+
 PM> update-database
 Build started...
 Build succeeded.
 Done.
 PM> 
+
+After a new database is created, execute the script: ..\DbScripts\InsertDefaultUser.sql
+
+Login using user email: admin@sokool.net  password: Password1!
 ------------------------------------------------------------------------------------------------------------------------
 
 // PM> dotnet ef migrations add MyCommand1
