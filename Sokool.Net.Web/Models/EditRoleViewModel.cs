@@ -7,7 +7,7 @@ namespace Sokool.Net.Web.Models
 	{
 		public EditRoleViewModel()
 		{
-			Users=new List<string>();
+			Users = new List<string>();
 		}
 
 		public string Id { get; set; }
@@ -15,6 +15,6 @@ namespace Sokool.Net.Web.Models
 		[Required(ErrorMessage = "Role Name is required")]
 		public string RoleName { get; set; }
 
-		public List<string> Users { get; set; }	
+		public List<string> Users { get; set; }
 	}
 }

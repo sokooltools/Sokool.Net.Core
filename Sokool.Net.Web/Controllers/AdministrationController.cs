@@ -222,23 +222,23 @@ namespace Sokool.Net.Web.Controllers
 				ViewBag.ErrorMessage = $"Role with Id = {roleId} cannot be found";
 				return View("Error");
 			}
-			var model = new List<UserRoleViewModel>();
+			var model = new List<UsersInRoleViewModel>();
 			foreach (AppUser user in _userManager.Users)
 			{
-				var userRoleViewModel = new UserRoleViewModel
+				var usersInRoleViewModel = new UsersInRoleViewModel
 				{
 					UserId = user.Id,
-					UserName = user.UserName
+					UserName = user.UserName,
+					IsSelected = await _userManager.IsInRoleAsync(user, role.Name)
 				};
-				userRoleViewModel.IsSelected = await _userManager.IsInRoleAsync(user, role.Name);
-				model.Add(userRoleViewModel);
+				model.Add(usersInRoleViewModel);
 			}
 			return View(model);
 		}
 
 		[HttpPost]
 		[Authorize(Policy = "EditUsersInRolePolicy")]
-		public async Task<IActionResult> EditUsersInRole(List<UserRoleViewModel> model, string roleId)
+		public async Task<IActionResult> EditUsersInRole(List<UsersInRoleViewModel> model, string roleId)
 		{
 			IdentityRole role = await _roleManager.FindByIdAsync(roleId);
 			if (role == null)
@@ -254,17 +254,16 @@ namespace Sokool.Net.Web.Controllers
 
 				bool isInRole = await _userManager.IsInRoleAsync(user, role.Name);
 
-				if (model[i].IsSelected && !isInRole)
+				switch (model[i].IsSelected)
 				{
-					result = await _userManager.AddToRoleAsync(user, role.Name);
-				}
-				else if (!model[i].IsSelected && isInRole)
-				{
-					result = await _userManager.RemoveFromRoleAsync(user, role.Name);
-				}
-				else
-				{
-					continue;
+					case true when !isInRole:
+						result = await _userManager.AddToRoleAsync(user, role.Name);
+						break;
+					case false when isInRole:
+						result = await _userManager.RemoveFromRoleAsync(user, role.Name);
+						break;
+					default:
+						continue;
 				}
 				if (!result.Succeeded)
 					continue;

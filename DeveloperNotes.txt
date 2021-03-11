@@ -134,3 +134,10 @@ Also add the following to a PropertyGroup tag:
     <PropertyGroup>
         <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
     </PropertyGroup>
+
+------------------------------------------------------------------------------------------------------------------------
+CERTIFICATE NEEDED FOR RUNNING DEVELOPMENT IN SSL MODE
+
+>  cd C:\Program Files\IIS Express
+
+>  IisExpressAdminCmd.exe setupsslUrl -url:https://localhost:5001/ -UseSelfSigned
